@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="locator3.Views.mapsPage"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="baseStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Large"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Start"></Setter>
+                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+            </Style>
+            <Style x:Key="labelStyle" TargetType="Label" BasedOn="{StaticResource baseStyle}">
+                <Setter Property="TextColor" Value="black"></Setter>
+                <Setter Property="FontSize" Value="Medium"></Setter>
+                <Setter Property="Margin" Value="15,0,0,0"></Setter>
+            </Style>
+            <Style x:Key="entryStyle" TargetType="Entry" >
+                <Setter Property="TextColor" Value="Black"></Setter>
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+                <Setter Property="Margin" Value="15,-5,15,0"></Setter>
+            </Style>
+            <Style x:Key="buttonStyle" TargetType="Button" >
+                <Setter Property="TextColor" Value="#04aaad"></Setter>
+                <Setter Property="BackgroundColor" Value="Black"></Setter>
+                <Setter Property="CornerRadius" Value="8"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="7*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <!--gamescreen -->
+        <!--naam: -->
+        <Label Grid.Row="0" Grid.Column="0" Text="{Binding GameName}" HorizontalTextAlignment="Start" TextColor="#04aaad" FontSize="36"></Label>
+
+          
+        <!--map -->
+        <maps:Map ItemsSource="{Binding Locations}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4"  Grid.ColumnSpan="2" HorizontalOptions="Fill" VerticalOptions="Fill" MapType="Hybrid"   x:Name="myMap" IsShowingUser="True" >
+            <maps:Map.ItemTemplate>
+                <DataTemplate>
+                    <maps:Pin Position="{Binding Position}" 
+                              Address="{Binding Address}"
+                              Label="{Binding Description}"/>
+                </DataTemplate>
+            </maps:Map.ItemTemplate>
+        </maps:Map>
+
+        <!-- internetConnection  -->
+        <Label IsVisible="{Binding NoInternetVisuable}" Text="No internet connection" TextColor="red" Margin="0,-4,0,0" HorizontalOptions="Center" Grid.ColumnSpan="2"></Label>
+        <!--coins-->
+        <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="End" BackgroundColor="White" Margin="10,0,3,0" IsVisible="{Binding CoinsVisuable}">
+            <Image Source="coin.png" HeightRequest="15"></Image>
+            <Label Text="{Binding Coins}" TextColor="Black" Margin="0,0,5,0"/>
+        </StackLayout>
+        
+        <ImageButton IsVisible="{Binding UpgradeButtonVisuable}" Source="swipeUp.jpg" BackgroundColor="Transparent" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,-5" HorizontalOptions="CenterAndExpand" Command="{Binding showUpgradeCommand}"></ImageButton>
+        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Padding="70,0,70,0" x:Name="btnTest" IsVisible="{Binding BtnInsideVisuable}" Text="go inside" Margin="0,0,0,5" Style="{StaticResource buttonStyle}" ></Button>
+        
+        <!--popUp-->
+        <ScrollView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalOptions="Center" BackgroundColor="#a9a9a9" Margin="30,8,30,150" IsVisible="{Binding PopUpVisuable}">
+            <StackLayout >
+                <Label Text="{Binding PopUpTitle}" Style="{StaticResource labelStyle}" FontSize="Title" TextColor="White" BackgroundColor="#333333" Padding="5" Margin="0"></Label>
+                <Label TextColor="Black" Margin="20, 10,20,0" FontSize="Medium" Text="{Binding PopUpText}" HorizontalOptions="Center"></Label>
+                <BoxView HeightRequest="1" Color="Black" Margin="15,0,15,0" ></BoxView>
+                <Label Text="Amount of coins:" TextColor="Black" Margin="15,0,0,0"></Label>
+                <Entry Text="{Binding PopUpAnswer}" Style="{StaticResource entryStyle}" Keyboard="Numeric"></Entry>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,5,0,5">
+                    <Button Command="{Binding okPopUpCommand}" Text="ok" HorizontalOptions="Start" Margin="0,0,60,0" BackgroundColor="#333333" TextColor="#04aaad"></Button>
+                    <Button Command="{Binding cancelPopUpCommand}" Text="cancel" HorizontalOptions="End" Margin="60,0,0,0" BackgroundColor="#333333" TextColor="#04aaad"></Button>
+                </StackLayout>
+            </StackLayout>
+
+        </ScrollView>
+        
+    </Grid>
+</ContentPage>

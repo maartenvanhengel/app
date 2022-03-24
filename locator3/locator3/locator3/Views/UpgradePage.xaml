@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="locator3.Views.UpgradePage">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="5, 20, 5, 0" Android="5,2,5,2"/>
+    </ContentPage.Padding>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="baseStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Large"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Start"></Setter>
+                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+
+            </Style>
+            <Style x:Key="labelStyle" TargetType="Label" BasedOn="{StaticResource baseStyle}">
+                <Setter Property="TextColor" Value="#04aaad"></Setter>
+                <Setter Property="FontSize" Value="Medium"></Setter>
+                <Setter Property="HorizontalOptions" Value="Center"></Setter>
+            </Style>
+            <Style x:Key="labelStyleSub" TargetType="Label" BasedOn="{StaticResource baseStyle}">
+                <Setter Property="TextColor" Value="#a9a9a9"></Setter>
+                <Setter Property="FontSize" Value="Caption"></Setter>
+                <Setter Property="HorizontalOptions" Value="Center"></Setter>
+                <Setter Property="Margin" Value="0,-10,0,0"></Setter>
+            </Style>
+            <Style x:Key="buttonStyle" TargetType="Button" >
+                <Setter Property="TextColor" Value="#04aaad"></Setter>
+                <Setter Property="BackgroundColor" Value="Black"></Setter>
+                <Setter Property="CornerRadius" Value="8"></Setter>
+            </Style>
+            <Style x:Key="entryStyle" TargetType="Entry" >
+                <Setter Property="TextColor" Value="Black"></Setter>
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+                <Setter Property="Margin" Value="15,-5,15,0"></Setter>
+            </Style>
+            <Style x:Key="pickerStyle" TargetType="Picker" >
+                <Setter Property="TextColor" Value="Black"></Setter>
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+                <Setter Property="Margin" Value="15,-5,15,0"></Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="11*" ></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Text="Name" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center"></Label>
+        <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Orientation="Horizontal">
+            <Image Source="Coin.png" HeightRequest="15" Margin="0,-8,-5,0"></Image>
+            <Label  Text="{Binding Coins}"></Label>
+        </StackLayout>
+        <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Image Source="test.Png" WidthRequest="150" HeightRequest="200" Grid.Row="0" Grid.Column="0"></Image>
+            <Label Text="name" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0"></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0">
+                <StackLayout Margin="0,0,20,0">
+                    <Label Text="12,4" Style="{StaticResource labelStyle}" ></Label>
+                    <Label Text="Weight" Style="{StaticResource labelStyleSub}"></Label>
+                </StackLayout>
+                <StackLayout Margin="20,0,0,0">
+                    <Label Text="4 cm" Style="{StaticResource labelStyle}"></Label>
+                    <Label Text="Height" Style="{StaticResource labelStyleSub}"></Label>
+                </StackLayout>
+            </StackLayout>
+            <BoxView HeightRequest="0.5" Color="Black" Margin="50,0,50,0" ></BoxView>
+        </StackLayout>
+        <Label Text="Health Potion" Style="{StaticResource labelStyle}" Margin="30,0,0,0" Grid.Column="0" Grid.Row="2" HorizontalOptions="Start"></Label>
+        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1" VerticalOptions="Center">
+            <Label BackgroundColor="{Binding HealthPotion1}" Text="      " HorizontalOptions="End" ></Label>
+            <Label BackgroundColor="{Binding HealthPotion2}" Text="      " HorizontalOptions="End"></Label>
+            <Label BackgroundColor="{Binding HealthPotion3}" Text="      " HorizontalOptions="End"></Label>
+            <Label BackgroundColor="{Binding HealthPotion4}" Text="      " HorizontalOptions="End"></Label>
+            <ImageButton Source="upgrade.png"  WidthRequest="30" HeightRequest="20" HorizontalOptions="End" Command="{Binding healthPotionCommand}"></ImageButton>
+        </StackLayout>
+        <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="Center" Margin="0,-8,0,0">
+            <Label Text="item cost:"></Label>
+            <Image Source="coin.png" HeightRequest="15" Margin="0,-15,-6,0"></Image>
+            <Label Text="{Binding HealthPotionCost}" ></Label>
+        </StackLayout>
+        
+        <Label Text="Shield" Style="{StaticResource labelStyle}" Margin="30,0,0,0" Grid.Column="0" Grid.Row="4" HorizontalOptions="Start"></Label>
+        <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="1" VerticalOptions="Center">
+            <Label BackgroundColor="{Binding Shield1}" Text="      " HorizontalOptions="End" ></Label>
+            <Label BackgroundColor="{Binding Shield2}" Text="      " HorizontalOptions="End"></Label>
+            <Label BackgroundColor="{Binding Shield3}" Text="      " HorizontalOptions="End"></Label>
+            <Label BackgroundColor="{Binding Shield4}" Text="      " HorizontalOptions="End"></Label>
+            <ImageButton Source="upgrade.png" WidthRequest="30" HeightRequest="20" HorizontalOptions="End" BackgroundColor="White" Command="{Binding shieldCommand}"></ImageButton>
+        </StackLayout>
+        <StackLayout Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="Center" Margin="0,-8,0,0">
+            <Label Text="item cost:"></Label>
+            <Image Source="coin.png" HeightRequest="15" Margin="0,-15,-6,0"></Image>
+            <Label Text="{Binding  ShieldCost}" ></Label>
+        </StackLayout>
+    
+        <Label Text="Attack damage" Style="{StaticResource labelStyle}" Margin="30,0,0,0" Grid.Column="0" Grid.Row="6" HorizontalOptions="Start"></Label>
+        <StackLayout Orientation="Horizontal" Grid.Row="6" Grid.Column="1" VerticalOptions="Center">
+            <Label BackgroundColor="{Binding AttackDamage1}" Text="      " HorizontalOptions="End" ></Label>
+            <Label BackgroundColor="{Binding AttackDamage2}" Text="      " HorizontalOptions="End"></Label>
+            <Label BackgroundColor="{Binding AttackDamage3}" Text="      " HorizontalOptions="End"></Label>
+            <Label BackgroundColor="{Binding AttackDamage4}" Text="      " HorizontalOptions="End"></Label>
+            <ImageButton Source="upgrade.png" WidthRequest="30" HeightRequest="20" HorizontalOptions="End" BackgroundColor="White" Command="{Binding attackDamageCommand}"></ImageButton>
+        </StackLayout>
+
+        <StackLayout Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="Center" Margin="0,-8,0,0">
+            <Label Text="upgrade cost:"></Label>
+            <Image Source="coin.png" HeightRequest="15" Margin="0,-15,-6,0"></Image>
+            <Label Text="{Binding AttackDamageCost}" ></Label>
+        </StackLayout>
+        
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2">
+            <StackLayout Margin="0,0,20,0">
+                <Label Text="0" Style="{StaticResource labelStyle}" ></Label>
+                <Label Text="Games won" Style="{StaticResource labelStyleSub}"></Label>
+            </StackLayout>
+            <StackLayout Margin="20,0,0,0">
+                <Label Text="0" Style="{StaticResource labelStyle}"></Label>
+                <Label Text="Games Lost" Style="{StaticResource labelStyleSub}"></Label>
+            </StackLayout>
+        </StackLayout>
+        <Button Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="End" Text="go to arena" Command="{Binding enterArenaCommand} "></Button>
+    </Grid>
+</ContentPage>

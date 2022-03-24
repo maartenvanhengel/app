@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="locator3.Views.SetLocationPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" ></RowDefinition>
+            <RowDefinition Height="17*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <maps:Map Grid.Row="0" Grid.RowSpan="2" IsShowingUser="True">
+            <maps:Map.Behaviors>
+                <xct:EventToCommandBehavior 
+                EventName="MapClicked"
+                Command="{Binding clickCommand}" />
+            </maps:Map.Behaviors>
+        </maps:Map>
+        <!---questionbutton-->
+        <ImageButton Grid.Row="0" Source="question.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="StartAndExpand" BackgroundColor="White"  Margin="5,5,5,0" Command="{Binding QuestionCommand}"></ImageButton>
+    </Grid>
+</ContentPage>

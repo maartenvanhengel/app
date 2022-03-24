@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="locator3.Views.BattlePage">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="5, 20, 5, 0" Android="15,10,15,10"/>
+    </ContentPage.Padding>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="baseStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Large"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+                <Setter Property="TextColor" Value="#04aaad"></Setter>
+            </Style>
+            <Style x:Key="buttonStyle" TargetType="Button" >
+                <Setter Property="TextColor" Value="#04aaad"></Setter>
+                <Setter Property="BackgroundColor" Value="Black"></Setter>
+                <Setter Property="CornerRadius" Value="8"></Setter>
+                <Setter Property="WidthRequest" Value="120"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="2"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="2"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.ColumnSpan="2" Grid.Row="0" Text="areaName" FontSize="Large" Style="{StaticResource baseStyle}"></Label>
+
+        <Label Grid.Row="1" Grid.Column="1" Text="{Binding LastPlayerAttack}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+        <ProgressBar Grid.Row="2" Grid.Column="1" ScaleY="3" Progress="{Binding ComputerHealth}"  ProgressColor="#04aaad" />
+        <Label Grid.Row="3" Grid.Column="1" Text="{Binding ComputerName}"></Label>
+
+        <Label Grid.Row="4" Grid.Column="0" Text="{Binding LastComputerAttack}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+        <ProgressBar Grid.Row="5" Grid.Column="0" ScaleY="3" Progress="{Binding PlayerHealth}" ProgressColor="#04aaad" />
+        <Label Grid.Row="6" Grid.Column="0" Text="{Binding PlayerName}"></Label>
+
+        <StackLayout Orientation="Vertical" Grid.Row="4" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="End">
+            <ImageButton Source="potion.png" HeightRequest="30" WidthRequest="30" Command="{Binding usePotionCommand}"></ImageButton>
+            <ImageButton Source="shield.png" HeightRequest="30" WidthRequest="30" Command="{Binding useShieldCommand}"></ImageButton>
+        </StackLayout>
+        
+        <Button Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start" Text="attack1" Style="{StaticResource buttonStyle}" Command="{Binding attack1Command}" IsEnabled="{Binding AttackEnabled} "></Button>
+        <Button Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Text="attack2" Style="{StaticResource buttonStyle}" Command="{Binding attack2Command}" IsEnabled="{Binding AttackEnabled}" ></Button>
+        <Button Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="End" Text="attack3" Style="{StaticResource buttonStyle}" Command="{Binding attack3Command}" IsEnabled="{Binding AttackEnabled}" ></Button>
+        
+        
+
+    </Grid>
+</ContentPage>

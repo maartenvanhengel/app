@@ -1,0 +1,35 @@
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\bin\Debug\netstandard2.0\locator3.deps.json
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\bin\Debug\netstandard2.0\locator3.dll
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\bin\Debug\netstandard2.0\locator3.pdb
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\obj\Debug\netstandard2.0\Views\MainPage.xaml.g.cs
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.AssemblyInfoInputs.cache
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.AssemblyInfo.cs
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.csproj.CoreCompileInputs.cache
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.dll
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.pdb
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\obj\Debug\netstandard2.0\Views\mapsPage.xaml.g.cs
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\obj\Debug\netstandard2.0\Views\BattlePage.xaml.g.cs
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.csproj.AssemblyReference.cache
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\obj\Debug\netstandard2.0\Views\UpgradeView.xaml.g.cs
+C:\Users\Maarten Vanhengel\OneDrive - UC Leuven-Limburg\app\locator\locator3\locator3\locator3\obj\Debug\netstandard2.0\Views\UpgradePage.xaml.g.cs
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\bin\Debug\netstandard2.0\locator3.deps.json
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\bin\Debug\netstandard2.0\locator3.dll
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\bin\Debug\netstandard2.0\locator3.pdb
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\Views\BattlePage.xaml.g.cs
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\Views\MainPage.xaml.g.cs
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\Views\mapsPage.xaml.g.cs
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\Views\UpgradePage.xaml.g.cs
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.AssemblyInfoInputs.cache
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.AssemblyInfo.cs
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.csproj.CoreCompileInputs.cache
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.dll
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.pdb
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\Views\SetLocationPage.xaml.g.cs
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.csproj.AssemblyReference.cache
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\Views\testPage.xaml.g.cs
