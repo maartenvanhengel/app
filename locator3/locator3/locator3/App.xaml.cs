@@ -39,6 +39,7 @@ namespace locator3
             containerRegistry.RegisterForNavigation<testPage, testPageViewModel>();
 
             containerRegistry.Register<IGameRepository<Game>, GameRepository>();
+            containerRegistry.RegisterForNavigation<BluetoothPage, BluetoothPageViewModel>();
         }
     }
 }

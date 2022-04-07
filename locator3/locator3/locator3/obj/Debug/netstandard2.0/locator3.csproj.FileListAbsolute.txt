@@ -31,5 +31,6 @@ C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netsta
 C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.dll
 C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.pdb
 C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\Views\SetLocationPage.xaml.g.cs
-C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.csproj.AssemblyReference.cache
 C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\Views\testPage.xaml.g.cs
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\Views\BluetoothPage.xaml.g.cs
+C:\Users\Maarten Vanhengel\Documents\locator3\locator3\locator3\obj\Debug\netstandard2.0\locator3.csproj.AssemblyReference.cache

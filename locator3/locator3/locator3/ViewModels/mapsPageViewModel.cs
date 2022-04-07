@@ -1,4 +1,5 @@
-﻿using locator3.Views;
+﻿using locator3.Models;
+using locator3.Views;
 using Plugin.Geolocator;
 using Prism.Commands;
 using Prism.Navigation;
@@ -25,9 +26,13 @@ namespace locator3.ViewModels
         int level;
         bool timerEnabled = true;
         private IPageDialogService pageDialogService;
+        Player player;
         public mapsPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
             : base(navigationService)
         {
+            Dragon dragon = new Dragon() { Armour = 50, Health = 1200, Damage = 80,Image = "dragon1.gif" };
+            player = new Player() { Coins = 2, Dragon = dragon, Name = playerName};    //aanmaken van speler
+            Coins = 2;
             Locations = new ObservableCollection<Location>();
             this.pageDialogService = pageDialogService;
 
@@ -47,7 +52,6 @@ namespace locator3.ViewModels
             PopUpAnswer = "";
             PopUpText = "";
             PopUpTitle = "";
-            Coins = 0;
             level = 1;
             game = new Game();
 
@@ -97,6 +101,8 @@ namespace locator3.ViewModels
             if (parameters.ContainsKey("game"))
             {
                 this.game = parameters.GetValue<Game>("game");
+                player.Name = parameters.GetValue<string>("playerName");
+                PlayerName = player.Name;
                 this.pointers = game.Pointers;
                 addPointers(game.Pointers);
 
@@ -104,6 +110,12 @@ namespace locator3.ViewModels
                 ChechIfBattle("battle"); //kijken of er een battle in zit en knoppen getoond moeten worden
                 CoinsVisuable = game.coinsEanabled;
                 await Task.Delay(TimeSpan.FromSeconds(5));  //zeker zijn dat alles geladen is
+            }
+            else if (parameters.ContainsKey("player"))
+            {
+                player = parameters.GetValue<Player>("player");
+                Coins = player.Coins;
+                timerEnabled = true;
             }
         }
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -134,6 +146,12 @@ namespace locator3.ViewModels
             get { return upgradeButtonVisuable; }
             set { SetProperty(ref upgradeButtonVisuable, value); }
         }
+        private string playerName;
+        public string PlayerName
+        {
+            get { return playerName; }
+            set { SetProperty(ref playerName, value); }
+        }
         private string gameName;
         public string GameName
         {
@@ -163,7 +181,9 @@ namespace locator3.ViewModels
         public ICommand showUpgradeCommand { get; private set; }
         public async void executeShowUpgrade()
         {
-            await NavigationService.NavigateAsync(nameof(UpgradePage));
+            var p = new NavigationParameters();
+            p.Add("player", player);
+            await NavigationService.NavigateAsync(nameof(UpgradePage), p);
         }
         public void executeCancelPopUp()
         {
@@ -252,10 +272,12 @@ namespace locator3.ViewModels
                     else if (pointer.type == "battle")
                     {
                         await pageDialogService.DisplayAlertAsync("Point", "you are invited to a battle", "OK");
-                        level++;
                         var p = new NavigationParameters();
                         p.Add("level", level);
+                        p.Add("player", player);
+                        p.Add("name", pointer.Name);
                         await NavigationService.NavigateAsync(nameof(BattlePage), p, true, false);
+                        level++;
                         //timer uit als battle voltooid is
                     }
                     else if (pointer.type == "yesNo")

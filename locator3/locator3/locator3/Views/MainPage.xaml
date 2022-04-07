@@ -49,7 +49,10 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-       <Image Source="test.PNG" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Aspect="AspectFill"></Image> 
+        <Image Source="test.PNG" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Aspect="AspectFill"></Image>
+            <!--Inlog-->
+     <!--   <ImageButton  HorizontalOptions="End" VerticalOptions="Start" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"></ImageButton> -->
+            
         <Label Grid.Row="0" Grid.Column="0" Text="Locator" HorizontalTextAlignment="Center" FontSize="Title" VerticalTextAlignment="Center" TextColor="#04aaad" ></Label>
 
         <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0">
@@ -81,6 +84,7 @@
                     <x:String>Battle arena</x:String>
                 </Picker.Items>
             </Picker>
+
             <!--public check -->
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" IsVisible="{Binding PublicVisuable}">
                 <Label  Text="public:" Style="{StaticResource labelStyle}"></Label>
@@ -91,6 +95,11 @@
                 <Label IsVisible="{Binding PublicVisuable}" Text="Enable in game coins:" Style="{StaticResource labelStyle}"></Label>
                 <CheckBox IsVisible="{Binding PublicVisuable}" IsChecked="{Binding CoinsChecked}" IsEnabled="{Binding CoinsEnabled}" HorizontalOptions="End" Color="Black"></CheckBox>
             </StackLayout>
+
+            <!--email van spler -->
+            <Label Text="Your email:" IsVisible="{Binding PublicVisuable}" Style="{StaticResource labelStyle}"></Label>
+            <Entry Text="{Binding Email}" IsVisible="{Binding PublicVisuable}" Style="{StaticResource entryStyle}"></Entry>
+            
             <!--location-->
             <StackLayout Orientation="Horizontal" IsVisible="{Binding AddGameVisuable}" HorizontalOptions="Fill" >
                 <Label Text="Location:" Style="{StaticResource labelStyle}"></Label>
@@ -105,6 +114,11 @@
             <Picker SelectedItem="{Binding SelectedPublicGame}" SelectedIndex="{Binding PickerPublicSelected}" ItemDisplayBinding="{Binding name}" Title="Select an option" IsVisible="{Binding JoinGameVisuable}" Style="{StaticResource pickerStyle}" ItemsSource="{Binding Games}">
                 <!--Public items-->
             </Picker>
+            <!-- Naam speler  -->
+            <Label Text="Your name:" IsVisible="{Binding SelectedPublicGame}" Style="{StaticResource labelStyle}"></Label>
+            <Entry Text="{Binding PlayerName}" IsVisible="{Binding SelectedPublicGame}" Style="{StaticResource entryStyle}"></Entry>
+
+
             <Button IsVisible="{Binding JoinGameVisuable}" Text="join game" Style="{StaticResource buttonStyle}" Margin="20,8,20,0" Command="{Binding JoinGameCommand}"></Button>
             <Button IsVisible="false"  Text="use textFile" Style="{StaticResource buttonStyle}" Margin="20,8,20,0" Command="{Binding JoinGameFileCommand}"></Button>
             <!--"{Binding JoinGameVisuable}" -->

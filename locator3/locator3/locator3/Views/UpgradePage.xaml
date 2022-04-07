@@ -59,17 +59,17 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Text="Name" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center"></Label>
+        <Label Text="{Binding PlayerName}" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center"></Label>
         <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Orientation="Horizontal">
             <Image Source="Coin.png" HeightRequest="15" Margin="0,-8,-5,0"></Image>
             <Label  Text="{Binding Coins}"></Label>
         </StackLayout>
         <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-            <Image Source="test.Png" WidthRequest="150" HeightRequest="200" Grid.Row="0" Grid.Column="0"></Image>
-            <Label Text="name" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0"></Label>
+            <Image Source="dragon1.gif" IsAnimationPlaying="True" WidthRequest="200" HeightRequest="200" Grid.Row="0" Grid.Column="0" ></Image>
+            <Label Text="Smaug" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0"></Label>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0">
                 <StackLayout Margin="0,0,20,0">
-                    <Label Text="12,4" Style="{StaticResource labelStyle}" ></Label>
+                    <Label Text="12,4m" Style="{StaticResource labelStyle}" ></Label>
                     <Label Text="Weight" Style="{StaticResource labelStyleSub}"></Label>
                 </StackLayout>
                 <StackLayout Margin="20,0,0,0">
@@ -85,7 +85,7 @@
             <Label BackgroundColor="{Binding HealthPotion2}" Text="      " HorizontalOptions="End"></Label>
             <Label BackgroundColor="{Binding HealthPotion3}" Text="      " HorizontalOptions="End"></Label>
             <Label BackgroundColor="{Binding HealthPotion4}" Text="      " HorizontalOptions="End"></Label>
-            <ImageButton Source="upgrade.png"  WidthRequest="30" HeightRequest="20" HorizontalOptions="End" Command="{Binding healthPotionCommand}"></ImageButton>
+            <ImageButton Source="upgrade.png" BackgroundColor="White" WidthRequest="30" HeightRequest="20" HorizontalOptions="End" Command="{Binding healthPotionCommand}"></ImageButton>
         </StackLayout>
         <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="Center" Margin="0,-8,0,0">
             <Label Text="item cost:"></Label>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="locator3.Views.BluetoothPage"
+             Title="iets">
+    <StackLayout>
+        <Button Command="{Binding connectCommand}" Text="klik"></Button>
+        <CollectionView ItemsSource="{Binding Items}" SelectionMode="Single"  SelectedItem="{Binding SelectedItem}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Name}"></Label>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

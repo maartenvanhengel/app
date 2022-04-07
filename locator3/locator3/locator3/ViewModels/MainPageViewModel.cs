@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -60,12 +61,12 @@ namespace locator3.ViewModels
 
             NewGameCommand = new DelegateCommand(ExecuteAddGame);
             JoinGameCommand = new DelegateCommand(ExecuteJoinGame);
-            JoinGameFileCommand = new DelegateCommand(ExecuteJoinGameFile);
             JoinOptionsCommand = new DelegateCommand(ExecuteJoinOptions);
             AddPointerCommand = new DelegateCommand(ExecuteAddPointer);
             NextCommand = new DelegateCommand(ExecuteNext);
             openMapCommand = new DelegateCommand(ExecuteOpenMap);
             QuestionCommand = new DelegateCommand(ExecuteQuestion);
+
         }
         public async void setPublicItems()
         {
@@ -121,6 +122,12 @@ namespace locator3.ViewModels
                 gameLong =parameters.GetValue<double>("long");
                 Location = $"{gameLat};{gameLong}";
             }
+        }
+        private string email;
+        public string Email
+        {
+            get { return email; }
+            set { SetProperty(ref email, value); }
         }
         private bool endGameVisuable;
         public bool EndGameVisuable
@@ -325,6 +332,13 @@ namespace locator3.ViewModels
             get { return pickerPublicSelected; }
             set {SetProperty(ref pickerPublicSelected, value); }
         }
+
+        private string playerName;
+        public string PlayerName
+        {
+            get { return playerName; }
+            set { SetProperty(ref playerName, value); }
+        }
         public ICommand NewGameCommand { get; private set; }
         public ICommand JoinGameFileCommand { get; private set; }
         public ICommand JoinGameCommand { get; private set; }
@@ -382,6 +396,7 @@ namespace locator3.ViewModels
                         ButtonJoinText = "Join Game";
                         StackVisuable = false;
                         p.Add("game", item);
+                        p.Add("playerName", PlayerName);
                         await NavigationService.NavigateAsync("mapsPage", p);
                     }
                 }
@@ -396,38 +411,7 @@ namespace locator3.ViewModels
             }
             //gegevens ophalen uit database
         }
-        public async void ExecuteJoinGameFile()
-        {
-            pointers.Clear();
-            try
-            {
-                var result = await FilePicker.PickAsync();
-                if (result != null)
-                {
-                    StreamReader reader = new StreamReader(result.FileName);
-                    string line = reader.ReadLine();
-                    string[] words;
-                    char[] separators = { ';' };
-                    line = reader.ReadLine();
-                    while (line != null)
-                    {
-                        Pointer pointer = new Pointer();
-                        words = line.Split(separators);
-                        pointer.Name = words[0];
-                        pointer.Latitude = Convert.ToDouble(words[1]);
-                        pointer.Longitude = Convert.ToDouble(words[2]);
-                        pointer.type = words[3];
-                        pointer.text = words[4];
-
-                        pointers.Add(pointer);
-                    }
-                }
-            }
-            catch
-            {
-                await pageDialogService.DisplayAlertAsync("Error", "error happend try again", "OK");
-            }
-        }
+       
         public void ExecuteJoinOptions()
         {
             questionMessage = "fill in an game id or select an public game to enter";
@@ -598,6 +582,35 @@ namespace locator3.ViewModels
                 };
                 await GameRepository.AddItemAsync(newGame);
                 await pageDialogService.DisplayAlertAsync("ID", "Game add, you'r id is: " + id, "Ok");
+
+                sendEmail(id);
+            }
+        }
+
+        public void sendEmail(int id)
+        {
+            try
+            {
+
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                mail.From = new MailAddress("maartenvanhengel2001@gmail.com");
+                mail.To.Add("maart1@outlook.be");
+                mail.Subject = "game";
+                mail.Body = "body";
+
+                SmtpServer.Port = 587;
+                SmtpServer.Host = "smtp.gmail.com";
+                SmtpServer.EnableSsl = true;
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("maartenvanhengel2001@gmail.com", "maart0506");
+
+                SmtpServer.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                pageDialogService.DisplayAlertAsync("Faild", ex.Message, "OK");
             }
         }
         private void checkCoins()

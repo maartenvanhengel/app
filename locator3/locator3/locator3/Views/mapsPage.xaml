@@ -30,7 +30,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
             <RowDefinition Height="7*"></RowDefinition>
             <RowDefinition Height="8*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
@@ -44,10 +44,10 @@
         <!--gamescreen -->
         <!--naam: -->
         <Label Grid.Row="0" Grid.Column="0" Text="{Binding GameName}" HorizontalTextAlignment="Start" TextColor="#04aaad" FontSize="36"></Label>
-
+        
           
         <!--map -->
-        <maps:Map ItemsSource="{Binding Locations}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4"  Grid.ColumnSpan="2" HorizontalOptions="Fill" VerticalOptions="Fill" MapType="Hybrid"   x:Name="myMap" IsShowingUser="True" >
+        <maps:Map ItemsSource="{Binding Locations}" Grid.Row="1" Grid.Column="0" Grid.RowSpan="3"  Grid.ColumnSpan="2" HorizontalOptions="Fill" VerticalOptions="Fill" MapType="Hybrid"   x:Name="myMap" IsShowingUser="True" >
             <maps:Map.ItemTemplate>
                 <DataTemplate>
                     <maps:Pin Position="{Binding Position}" 
@@ -59,11 +59,21 @@
 
         <!-- internetConnection  -->
         <Label IsVisible="{Binding NoInternetVisuable}" Text="No internet connection" TextColor="red" Margin="0,-4,0,0" HorizontalOptions="Center" Grid.ColumnSpan="2"></Label>
+        <!--name -->
+        <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="-2,-2,-2,-6" BackgroundColor="#04afaf" >
+
+            <Label Text="{Binding PlayerName}" HorizontalOptions="Start" TextColor="Black" Margin="30,0,0,0"></Label>
+
+            <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" Margin="0,0,30,0" IsVisible="{Binding CoinsVisuable}">
+                <Image Source="coin.png" HeightRequest="15" ></Image>
+                <Label Text="{Binding Coins}" TextColor="Black"  />
+            </StackLayout>
+        </StackLayout>
         <!--coins-->
-        <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="End" BackgroundColor="White" Margin="10,0,3,0" IsVisible="{Binding CoinsVisuable}">
+    <!--    <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal"  VerticalOptions="Start" BackgroundColor="White" IsVisible="{Binding CoinsVisuable}">
             <Image Source="coin.png" HeightRequest="15"></Image>
             <Label Text="{Binding Coins}" TextColor="Black" Margin="0,0,5,0"/>
-        </StackLayout>
+        </StackLayout>  -->
         
         <ImageButton IsVisible="{Binding UpgradeButtonVisuable}" Source="swipeUp.jpg" BackgroundColor="Transparent" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,-5" HorizontalOptions="CenterAndExpand" Command="{Binding showUpgradeCommand}"></ImageButton>
         <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Padding="70,0,70,0" x:Name="btnTest" IsVisible="{Binding BtnInsideVisuable}" Text="go inside" Margin="0,0,0,5" Style="{StaticResource buttonStyle}" ></Button>

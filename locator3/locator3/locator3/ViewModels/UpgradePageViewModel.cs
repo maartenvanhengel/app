@@ -1,7 +1,9 @@
-﻿using locator3.Views;
+﻿using locator3.Models;
+using locator3.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,17 +15,39 @@ namespace locator3.ViewModels
 {
     public class UpgradePageViewModel : ViewModelBase
     {
-        public UpgradePageViewModel(INavigationService navigationservice)
+        private IPageDialogService pageDialogService;
+        Player player;
+        Dragon dragon;
+        public UpgradePageViewModel(INavigationService navigationservice, IPageDialogService pageDialogService)
             :base(navigationservice)
         {
+            Health1 = "Gray";
+            Health2 = "Gray";
+            Health3 = "Gray";
+            Health4 = "Gray";
+
+            Armour1 = "gray";
+            Armour2 = "gray";
+            Armour3 = "gray";
+            Armour4 = "gray";
+
+            AttackDamage1 = "gray";
+            AttackDamage2 = "gray";
+            AttackDamage3 = "gray";
+            AttackDamage4 = "gray";
+
+            player = new Player();
+            dragon = new Dragon();
+
+            this.pageDialogService = pageDialogService;
             /*var patht = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var filenamet = Path.Combine(patht, "playerData.txt");
             File.Delete(filenamet);*/
-            //HealthPotion = 0;
-            HealthPotionCost = 1;
+            //Health = 0;
+            HealthCost = 1;
 
             //Shield = 0;
-            ShieldCost = 2;
+            ArmourCost = 2;
 
             //AttackDamage = 1;
             AttackDamageCost = 1;
@@ -32,209 +56,224 @@ namespace locator3.ViewModels
             shieldCommand = new DelegateCommand(executeShield);
             attackDamageCommand = new DelegateCommand(executeAttackDamage);
             enterArenaCommand = new DelegateCommand(executeEnterArena);
-            try
-            {
-                var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                var filename = Path.Combine(path, "playerData.txt");
-                StreamReader reader = new StreamReader(filename);
-                string line = reader.ReadLine();
-                string[] words;
-                char[] separators = { ';' };
-                words = line.Split(separators);
-                Coins = Convert.ToInt32(words[0]);
-                line = reader.ReadLine();
-                words = line.Split(separators);
-                HealthPotion = Convert.ToInt32(words[0]);
-                Shield = Convert.ToInt32(words[1]);
-                AttackDamage = Convert.ToInt32(words[2]);
-            }
-            catch (Exception)
-            {
-                Coins = 2;
-                HealthPotion = 0;
-                Shield = 0;
-                attackDamage = 0;
-            }
+            
 
+        }
+        public async override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("player"))
+            {
+                player = parameters.GetValue<Player>("player");
+                Coins = player.Coins;
+                PlayerName = player.Name;
+                dragon = player.Dragon;
+
+
+                Health =dragon.Health;
+                Armour = dragon.Armour;
+                AttackDamage = dragon.Damage;
+            }
+            else
+            {
+         //       await pageDialogService.DisplayAlertAsync("Error", "error happend, try again", "ok");
+               await NavigationService.GoBackAsync();
+            }
+        }
+        public async override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            var p = new NavigationParameters();
+            p.Add("player", player);
+            await NavigationService.GoBackAsync(p);
+        }
+        private string playerName;
+        public string PlayerName
+        {
+            get { return playerName; }
+            set { SetProperty(ref playerName, value); }
         }
         private int coins;
         public int Coins
         {
             get { return coins; }
-            set { SetProperty(ref coins, value); }
+            set {if (SetProperty(ref coins, value))
+                {
+                    player.Coins = Coins;
+                }; }
         }
         public ICommand healthPotionCommand { get; private set; }
-        private int healthPotion ;
-        public int HealthPotion
+        private int health ;
+        public int Health
         {
-            get { return healthPotion; }
-            set { if (SetProperty(ref healthPotion, value))
+            get { return health; }
+            set { if (SetProperty(ref health, value))
                 {
-                    HealthPotionCost = HealthPotionCost * 2;
-                    if (HealthPotion == 0)
+                    dragon.Health = Health;
+                    HealthCost = HealthCost * 2;
+                    if (Health == 0)
                     {
-                        HealthPotion1 = "Gray";
-                        HealthPotion2 = "Gray";
-                        HealthPotion3 = "Gray";
-                        HealthPotion4 = "Gray";
+                        Health1 = "Gray";
+                        Health2 = "Gray";
+                        Health3 = "Gray";
+                        Health4 = "Gray";
                     }
-                    else if (HealthPotion == 1)
+                    else if (Health == 1)
                     {
-                        HealthPotion1 = "Green";
-                        HealthPotion2 = "Gray";
-                        HealthPotion3 = "Gray";
-                        HealthPotion4 = "Gray";
+                        Health1 = "Green";
+                        Health2 = "Gray";
+                        Health3 = "Gray";
+                        Health4 = "Gray";
                     }
-                    else if (HealthPotion == 2)
+                    else if (Health == 2)
                     {
-                        HealthPotion1 = "Green";
-                        HealthPotion2 = "Green";
-                        HealthPotion3 = "Gray";
-                        HealthPotion4 = "Gray";
+                        Health1 = "Green";
+                        Health2 = "Green";
+                        Health3 = "Gray";
+                        Health4 = "Gray";
                     }
-                    else if (HealthPotion == 3)
+                    else if (Health == 3)
                     {
-                        HealthPotion1 = "Green";
-                        HealthPotion2 = "Green";
-                        HealthPotion3 = "Green";
-                        HealthPotion4 = "Gray";
+                        Health1 = "Green";
+                        Health2 = "Green";
+                        Health3 = "Green";
+                        Health4 = "Gray";
                     }
-                    else if (HealthPotion == 4)
+                    else if (Health == 4)
                     {
-                        HealthPotion1 = "Green";
-                        HealthPotion2 = "Green";
-                        HealthPotion3 = "Green";
-                        HealthPotion4 = "Green";
+                        Health1 = "Green";
+                        Health2 = "Green";
+                        Health3 = "Green";
+                        Health4 = "Green";
                     }
                 }
             ; }
         }
-        private string healthPotion1;
-        public string HealthPotion1
+        private string health1;
+        public string Health1
         {
-            get { return healthPotion1; }
-            set { SetProperty(ref healthPotion1, value); }
+            get { return health1; }
+            set { SetProperty(ref health1, value); }
         }
-        private string healthPotion2;
-        public string HealthPotion2
+        private string health2;
+        public string Health2
         {
-            get { return healthPotion2; }
-            set { SetProperty(ref healthPotion2, value); }
+            get { return health2; }
+            set { SetProperty(ref health2, value); }
         }
-        private string healthPotion3;
-        public string HealthPotion3
+        private string health3;
+        public string Health3
         {
-            get { return healthPotion3; }
-            set { SetProperty(ref healthPotion3, value); }
+            get { return health3; }
+            set { SetProperty(ref health3, value); }
         }
-        private string healthPotion4;
-        public string HealthPotion4
+        private string health4;
+        public string Health4
         {
-            get { return healthPotion4; }
-            set { SetProperty(ref healthPotion4, value); }
+            get { return health4; }
+            set { SetProperty(ref health4, value); }
         }
-        private int healthPotionCost;
-        public int HealthPotionCost
+        private int healthCost;
+        public int HealthCost
         {
-            get { return healthPotionCost; }
-            set { SetProperty(ref healthPotionCost, value); }
+            get { return healthCost; }
+            set { SetProperty(ref healthCost, value); }
         }
         private void executeHealthPotion()
         {
-            if (Coins >= HealthPotionCost)
+            if (Coins >= HealthCost)
             {
-                if (HealthPotion < 4)
+                if (Health < 4)
                 {
-                    Coins = Coins - HealthPotionCost;
-                    HealthPotion = HealthPotion + 1;
+                    Coins = Coins - HealthCost;
+                    Health = Health + 1;
                 }
             }
         }
 
-        private int shield;
-        public int Shield
+        private int armour;
+        public int Armour
         {
-            get { return shield; }
-            set { if (SetProperty(ref shield, value))
+            get { return armour; }
+            set { if (SetProperty(ref armour, value))
                 {
-                    ShieldCost = ShieldCost * 2;
-                    if (Shield == 0)
+                    ArmourCost = ArmourCost * 2;
+                    if (Armour == 0)
                     {
-                        Shield1 = "gray";
-                        Shield2 = "gray";
-                        Shield3 = "gray";
-                        Shield4 = "gray";
+                        Armour1 = "gray";
+                        Armour2 = "gray";
+                        Armour3 = "gray";
+                        Armour4 = "gray";
                     }
-                    else if (shield == 1)
+                    else if (armour == 1)
                     {
-                        Shield1 = "green";
-                        Shield2 = "gray";
-                        Shield3 = "gray";
-                        Shield4 = "gray";
+                        Armour1 = "green";
+                        Armour2 = "gray";
+                        Armour3 = "gray";
+                        Armour4 = "gray";
                     }
-                    else if (shield == 2)
+                    else if (armour == 2)
                     {
-                        Shield1 = "green";
-                        Shield2 = "green";
-                        Shield3 = "gray";
-                        Shield4 = "gray";
+                        Armour1 = "green";
+                        Armour2 = "green";
+                        Armour3 = "gray";
+                        Armour4 = "gray";
                     }
-                    else if (shield == 3)
+                    else if (armour == 3)
                     {
-                        Shield1 = "green";
-                        Shield2 = "green";
-                        Shield3 = "green";
-                        Shield4 = "gray";
+                        Armour1 = "green";
+                        Armour2 = "green";
+                        Armour3 = "green";
+                        Armour4 = "gray";
                     }
-                    else if (shield == 4)
+                    else if (armour == 4)
                     {
-                        Shield1 = "green";
-                        Shield2 = "green";
-                        Shield3 = "green";
-                        Shield4 = "green";
+                        Armour1 = "green";
+                        Armour2 = "green";
+                        Armour3 = "green";
+                        Armour4 = "green";
                     }
+                    dragon.Armour = Armour;
                 }
             ; }
         }
-        private string shield1;
-        public string Shield1
+        private string armour1;
+        public string Armour1
         {
-            get { return shield1; }
-            set { SetProperty(ref shield1, value); }
+            get { return armour1; }
+            set { SetProperty(ref armour1, value); }
         }
-        private string shield2;
-        public string Shield2
+        private string armour2;
+        public string Armour2
         {
-            get { return shield2; }
-            set { SetProperty(ref shield2, value); }
+            get { return armour2; }
+            set { SetProperty(ref armour2, value); }
         }
-        private string shield3;
-        public string Shield3
+        private string armour3;
+        public string Armour3
         {
-            get { return shield3; }
-            set { SetProperty(ref shield3, value); }
+            get { return armour3; }
+            set { SetProperty(ref armour3, value); }
         }
-        private string shield4;
-        public string Shield4
+        private string armour4;
+        public string Armour4
         {
-            get { return shield4; }
-            set { SetProperty(ref shield4, value); }
+            get { return armour4; }
+            set { SetProperty(ref armour4, value); }
         }
-        private int shieldCost;
-        public int ShieldCost
+        private int armourCost;
+        public int ArmourCost
         {
-            get { return shieldCost; }
-            set { SetProperty(ref shieldCost, value); }
+            get { return armourCost; }
+            set { SetProperty(ref armourCost, value); }
         }
         public ICommand shieldCommand { get; private set; }
         public void executeShield()
         {
-            if (Coins >= ShieldCost)
+            if (Coins >= ArmourCost)
             {
-                if (Shield < 4)
+                if (Armour < 4)
                 {
-                    Coins = Coins - ShieldCost;
-                    Shield++;
+                    Coins = Coins - ArmourCost;
+                    Armour++;
                 }
             }
         }
@@ -281,6 +320,7 @@ namespace locator3.ViewModels
                         AttackDamage3 = "green";
                         AttackDamage4 = "green";
                     }
+                  //  player.AttackDamage = attackDamage;
                 }
             ; }
         }
@@ -332,27 +372,31 @@ namespace locator3.ViewModels
         public ICommand enterArenaCommand { get; private set; }
         public async void executeEnterArena()
         {
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            var filename = Path.Combine(path, "playerData.txt");
-            StreamWriter writer;
-            if (File.Exists(filename))
-            {
-                File.Delete(filename);
-            }
-            writer = File.CreateText(filename);
-            writer.WriteLine($"{coins};");
-            writer.WriteLine($"{HealthPotion};{Shield};{AttackDamage}");
-            writer.Close();
+            /*    var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                var filename = Path.Combine(path, "playerData.txt");
+                StreamWriter writer;
+                if (File.Exists(filename))
+                {
+                    File.Delete(filename);
+                }
+                writer = File.CreateText(filename);
+                writer.WriteLine($"{Coins};");
+                writer.WriteLine($"{Health};{Shield};{AttackDamage}");
+                writer.Close();
 
-            /*Player Player = new Player();
-            Player.AttackDamage = 12;
-            Player.HealthPotion = HealthPotion;
-            Player.Name = "test";
-            Player.Shield = Shield;
+                /*Player Player = new Player();
+                Player.AttackDamage = 12;
+                Player.Health = Health;
+                Player.Name = "test";
+                Player.Shield = Shield;
+
+                var p = new NavigationParameters();
+                p.Add("Player", Player);*/
+            //   await NavigationService.NavigateAsync(nameof(BattlePage));
 
             var p = new NavigationParameters();
-            p.Add("Player", Player);*/
-            await NavigationService.NavigateAsync(nameof(BattlePage));
+            p.Add("player", player);
+            await NavigationService.GoBackAsync(p);
         }
     }
 }
