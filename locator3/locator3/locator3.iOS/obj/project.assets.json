@@ -5078,11 +5078,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Maarten Vanhengel\\Documents\\locator3\\locator3\\locator3.iOS\\locator3.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\Maarten Vanhengel\\Documents\\git\\app\\locator3\\locator3\\locator3.iOS\\locator3.iOS.csproj",
       "projectName": "locator3.iOS",
-      "projectPath": "C:\\Users\\Maarten Vanhengel\\Documents\\locator3\\locator3\\locator3.iOS\\locator3.iOS.csproj",
+      "projectPath": "C:\\Users\\Maarten Vanhengel\\Documents\\git\\app\\locator3\\locator3\\locator3.iOS\\locator3.iOS.csproj",
       "packagesPath": "C:\\Users\\Maarten Vanhengel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Maarten Vanhengel\\Documents\\locator3\\locator3\\locator3.iOS\\obj\\",
+      "outputPath": "C:\\Users\\Maarten Vanhengel\\Documents\\git\\app\\locator3\\locator3\\locator3.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -5105,8 +5105,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\Maarten Vanhengel\\Documents\\locator3\\locator3\\locator3\\locator3.csproj": {
-              "projectPath": "C:\\Users\\Maarten Vanhengel\\Documents\\locator3\\locator3\\locator3\\locator3.csproj"
+            "C:\\Users\\Maarten Vanhengel\\Documents\\git\\app\\locator3\\locator3\\locator3\\locator3.csproj": {
+              "projectPath": "C:\\Users\\Maarten Vanhengel\\Documents\\git\\app\\locator3\\locator3\\locator3\\locator3.csproj"
             }
           }
         }

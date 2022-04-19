@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GO65BpYm8lKycjY/yCDv50lo7NNT2nF3PzaU6/fnuJ/8Ha6iR5qXDWT7Uq9ghjuQYMn3UX5PnVGGdQ0NhshClg==",
+  "dgSpecHash": "maghoYdmUm2LEoHV4znhwbXHdYORnHqfNM6ckrbrMaQUPfO/XITxg0FadpHO3OEdkOyWxrnWp6/igEMoSZVSyg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Maarten Vanhengel\\Documents\\locator3\\locator3\\locator3.iOS\\locator3.iOS.csproj",
+  "projectFilePath": "C:\\Users\\Maarten Vanhengel\\Documents\\git\\app\\locator3\\locator3\\locator3.iOS\\locator3.iOS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Maarten Vanhengel\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Maarten Vanhengel\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",

@@ -591,14 +591,15 @@ namespace locator3.ViewModels
         {
             try
             {
-
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
                 mail.From = new MailAddress("maartenvanhengel2001@gmail.com");
                 mail.To.Add("maart1@outlook.be");
-                mail.Subject = "game";
-                mail.Body = "body";
+                mail.Subject = "new locator game";
+                mail.Body = "Congrats \n" +
+                    "You created a new game with id " + id + "\n" +
+                    "have fun playing ";
 
                 SmtpServer.Port = 587;
                 SmtpServer.Host = "smtp.gmail.com";

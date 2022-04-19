@@ -17,7 +17,7 @@ namespace locator3.ViewModels
 {
     public class BluetoothPageViewModel : BindableBase
     {
-        private IPageDialogService pageDialogService;
+     /*   private IPageDialogService pageDialogService;
         BluetoothDeviceModel device;
         IBluetoothAdapter bluetoothAdapter; 
         public BluetoothPageViewModel(IPageDialogService pageDialogService)
@@ -31,9 +31,10 @@ namespace locator3.ViewModels
             bluetoothAdapter = DependencyService.Resolve<IBluetoothAdapter>();
             checkBluetoothDevices();
         }
+        
         public ICommand connectCommand { get; private set; }
         public ObservableCollection<BluetoothDeviceModel> Items { get; private set; }
-
+        
         private async void executeConnect()
         {
             
@@ -50,6 +51,7 @@ namespace locator3.ViewModels
 
 
                 var connection = bluetoothAdapter.CreateConnection(device);
+               await connection.ConnectAsync();
                     if (await connection.RetryConnectAsync(retriesCount: 5))
                     {
                         byte[] buffer = new byte[BufferSize] { value };
@@ -84,6 +86,7 @@ namespace locator3.ViewModels
                 }
             ; }
         }
+        
         public void checkBluetoothDevices()
         {
          //   var bluetoothAdapter = DependencyService.Resolve<IBluetoothAdapter>();
@@ -94,7 +97,7 @@ namespace locator3.ViewModels
                 Items.Add(item);
             }
         }
-
+        
         public byte[] GetImageStreamAsBytes(Stream input)
         {
             var buffer = new byte[16 * 1024];
@@ -108,6 +111,6 @@ namespace locator3.ViewModels
                 return ms.ToArray();
             }
         }
-
+     */   
     }
 }

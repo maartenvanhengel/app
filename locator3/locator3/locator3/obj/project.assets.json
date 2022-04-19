@@ -2948,11 +2948,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Maarten Vanhengel\\Documents\\locator3\\locator3\\locator3\\locator3.csproj",
+      "projectUniqueName": "C:\\Users\\Maarten Vanhengel\\Documents\\git\\app\\locator3\\locator3\\locator3\\locator3.csproj",
       "projectName": "locator3",
-      "projectPath": "C:\\Users\\Maarten Vanhengel\\Documents\\locator3\\locator3\\locator3\\locator3.csproj",
+      "projectPath": "C:\\Users\\Maarten Vanhengel\\Documents\\git\\app\\locator3\\locator3\\locator3\\locator3.csproj",
       "packagesPath": "C:\\Users\\Maarten Vanhengel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Maarten Vanhengel\\Documents\\locator3\\locator3\\locator3\\obj\\",
+      "outputPath": "C:\\Users\\Maarten Vanhengel\\Documents\\git\\app\\locator3\\locator3\\locator3\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
