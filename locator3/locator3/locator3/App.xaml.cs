@@ -20,7 +20,7 @@ namespace locator3
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("NavigationPage/BluetoothPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

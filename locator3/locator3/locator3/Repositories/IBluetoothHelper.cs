@@ -4,7 +4,7 @@ using System.Text;
 
 namespace locator3.Repositories
 {
-    interface IBluetoothHelper
+  public  interface IBluetoothHelper
     {
         void Getconnection();
     }
