@@ -20,19 +20,13 @@ namespace locator3.ViewModels
         int level;
         int maxComputerHealth;
         int maxPlayerHealth;
-        bool shieldEnabled = false;
         Player player;
         Dragon dragon;
         Dragon opponentDragon;
         private IPageDialogService pageDialogService;
-
-        double[] attackAmountPlayer;
-        double[] attackAmountComputer;
         public BattlePageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
             : base(navigationService)
         {
-            attackAmountPlayer = new double[3];
-            attackAmountComputer = new double[3];
 
             Button1Pressed = 0;
             Button2Pressed = 0;
@@ -45,19 +39,18 @@ namespace locator3.ViewModels
             Attack1Enabled = true;
             Attack2Enabled = true;
             Attack3Enabled = true;
-            shieldEnabled = false;
 
             attack1Command = new DelegateCommand(executeAttack1);
             attack2Command = new DelegateCommand(executeAttack2);
             attack3Command = new DelegateCommand(executeAttack3);
-            useShieldCommand = new DelegateCommand(executeUseShield);
             this.pageDialogService = pageDialogService;
             //  attackStrength = 2;
 
-            dragon.Damage = 100;
             PopUpVisuable = true;
             GameVisuable = false;
+            AnimationVisuable = true;
             int teller = 0;
+
             Device.StartTimer(TimeSpan.FromSeconds(5), () =>
             {
                 if (teller ==0)
@@ -66,7 +59,6 @@ namespace locator3.ViewModels
                 }
                 else
                 {
-
                     PopUpVisuable = false;
                     GameVisuable = true;
                 }
@@ -80,12 +72,14 @@ namespace locator3.ViewModels
                 player = parameters.GetValue<Player>("player");
                 AreaName = parameters.GetValue<string>("name");
                 dragon = player.Dragon;
+                Coins = player.Coins;
 
                 AttackStrength = dragon.Damage;
                 Armour = dragon.Armour;
                 maxPlayerHealth = dragon.Health;
                 PlayerHealth = dragon.Health;
                 DragonImage = dragon.Image;
+                DragonName = dragon.Name;
                 PlayerName = player.Name;
             }
             if (parameters.ContainsKey("level"))
@@ -140,6 +134,12 @@ namespace locator3.ViewModels
                 {
                     player.Coins = Coins;
                 } ; }
+        }
+        private string dragonName;
+        public string DragonName
+        {
+            get { return dragonName; }
+            set { SetProperty(ref dragonName, value); }
         }
         private int attackStrength;
         public int AttackStrength
@@ -271,59 +271,65 @@ namespace locator3.ViewModels
             get { return  computerArmour; }
             set { SetProperty(ref  computerArmour, value); }
         }
+        private string computerImage;
+        public string ComputerImage
+        {
+            get { return computerImage; }
+            set { SetProperty(ref computerImage, value); }
+        }
+        private string background;
+        public string Background
+        {
+            get { return background; }
+            set { SetProperty(ref background, value); }
+        }
         public ICommand attack1Command { get; private set; }
         public ICommand attack2Command { get; private set; }
         public ICommand attack3Command { get; private set; }
 
         private void checkLevel(int level)
         {
-            if (level == 1)
+            if (level == 1) //nature dragon
             {
-                opponentDragon.Armour = 40;
-                opponentDragon.Damage = 80;
-                opponentDragon.Health = 1000;
-                maxComputerHealth = 1000;
+                ComputerImage = "dragon6.gif";
+                ComputerHealth = 800;
+                ComputerName = "viridisaliquid";
+                ComputerDamage = 20;
+                ComputerArmour = 30;
+                Background = "backgroundNature.png";
+            }
+            else if (level == 2)    //fire dragon
+            {
+                ComputerImage = "dragon1.1.gif";
                 ComputerHealth = 1000;
-                ComputerName = "naam";
-                ComputerDamage = 50;
+                ComputerName = "Brantley";
+                ComputerDamage = 60;
+                ComputerArmour = 45;
+                Background = "backgroundFire.png";
+            }
+            else if (level == 3) //ice dragon
+            {
+                ComputerImage = "dragon7.gif";
+                ComputerHealth = 1100;
+                ComputerName = "Frostine";
+                ComputerDamage = 100;
                 ComputerArmour = 70;
-            /*    attackAmountPlayer[0] = 0.08;
-                attackAmountPlayer[1] = 0.10;
-                attackAmountPlayer[2] = 0.13;
-
-                attackAmountComputer[0] = 0.03;
-                attackAmountComputer[1] = 0.05;
-                attackAmountComputer[2] = 0.07;  */
+                Background = "backgroundZee.jpg";
             }
-            else if (level == 2)
+            else
             {
-                opponentDragon.Armour = 70;
-                opponentDragon.Damage = 50;
-                opponentDragon.Health = 1200;
+                Random rnd = new Random();
+                int random = rnd.Next(1, 7);
+                string dragonstring = "dragon" + Convert.ToString(random)+".1.gif";
 
-                attackAmountPlayer[0] = 0.07;
-                attackAmountPlayer[1] = 0.09;
-                attackAmountPlayer[2] = 0.12;
-
-                attackAmountComputer[0] = 0.05;
-                attackAmountComputer[1] = 0.07;
-                attackAmountComputer[2] = 0.09;
+                ComputerImage = dragonstring;
+                ComputerHealth = 1100 + level * 150;
+                ComputerName = "Dragon";
+                ComputerDamage = 100 + level* 10;
+                ComputerArmour = 100 + level *5;
+                Background = "backgroundNature.png";
             }
-            else if (level == 3)
-            {
-                opponentDragon.Armour = 70;
-                opponentDragon.Damage = 70;
-                opponentDragon.Health = 1500;  
-                
-                attackAmountPlayer[0] = 0.06;
-                attackAmountPlayer[1] = 0.08;
-                attackAmountPlayer[2] = 0.11;
-
-                attackAmountComputer[0] = 0.06;
-                attackAmountComputer[1] = 0.08;
-                attackAmountComputer[2] = 0.11;
-            }
-            else if (level == 4)
+       /*     else if (level == 4)
             {
                 opponentDragon.Armour = 70;
                 opponentDragon.Damage = 90;
@@ -351,7 +357,13 @@ namespace locator3.ViewModels
                 attackAmountComputer[1] = 0.10;
                 attackAmountComputer[2] = 0.13;
             }
-            attackAmountPlayer[0] = attackAmountPlayer[0] + (playerHealth / 100);
+            attackAmountPlayer[0] = attackAmountPlayer[0] + (playerHealth / 100);*/
+
+
+            opponentDragon.Armour = ComputerArmour;
+            opponentDragon.Damage = ComputerDamage;
+            opponentDragon.Health = Convert.ToInt32(ComputerHealth);
+            maxComputerHealth = Convert.ToInt32(ComputerHealth);
         }
         private void executeAttack1()
         {
@@ -388,22 +400,27 @@ namespace locator3.ViewModels
         }
         private void executeAttack3()
         {
-            Button1Pressed--;
-            Button2Pressed--;
-            Button3Pressed++;
-            Random rnd = new Random();
-            int random = rnd.Next(0, 3);
-            double attack = 0;
-            if (random == 0)
-            {
-                attack = dragon.Damage + 20 - opponentDragon.Armour;
-                LastPlayerAttack = "-13";
-            }
-            else
-            {
-                LastPlayerAttack = "attack failed";
-            }
-            ComputerHealth = ComputerHealth - attack;
+            /*      Button1Pressed--;
+                  Button2Pressed--;
+                  Button3Pressed++;
+                  Random rnd = new Random();
+                  int random = rnd.Next(0, 3);
+                  double attack = 0;
+                  if (random == 0)
+                  {
+                      attack = dragon.Damage + 20 - opponentDragon.Armour;
+                      LastPlayerAttack = "-13";
+                  }
+                  else
+                  {
+                      LastPlayerAttack = "attack failed";
+                  }
+                  ComputerHealth = ComputerHealth - attack;
+                  checkPlayerHealth();
+
+            //    playAnimation("fireGif.gif"); */
+
+            ComputerHealth = 0;
             checkPlayerHealth();
         }
         private void checkPlayerHealth()
@@ -551,19 +568,27 @@ namespace locator3.ViewModels
                 }
             });
         }
-
-        public ICommand useShieldCommand { get; private set; }
-        public void executeUseShield()
+        private string animationString;
+        public string AnimationString
         {
-            if (Armour >= 0)
-            {
-                Armour = Armour - 1;
-                shieldEnabled = true;
-                checkPlayerHealth();
-            }
+            get { return animationString; }
+            set { SetProperty(ref animationString, value); }
+        }
+        private bool animationVisuable;
+        public bool AnimationVisuable
+        {
+            get { return animationVisuable; }
+            set { SetProperty(ref animationVisuable, value); }
+        }
+        private async void playAnimation(string animation)
+        {
+            AnimationVisuable = true;
+            AnimationString = animation;
+
+            await Task.Delay(TimeSpan.FromSeconds(3));  //zeker zijn dat alles geladen is
+            AnimationVisuable = false;
         }
 
-        public ICommand usePotionCommand { get; private set; }
         
     }
 }

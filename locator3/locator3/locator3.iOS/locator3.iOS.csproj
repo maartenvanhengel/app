@@ -259,5 +259,14 @@
   <ItemGroup>
     <BundleResource Include="Resources\dragon2.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dragon4.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dragon3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dragon5.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -24,38 +24,31 @@ namespace locator3.ViewModels
         List<Pointer> pointers = new List<Pointer>();
         Game game;
         int level;
-        bool timerEnabled = true;
+        bool timerEnabled = false;
         private IPageDialogService pageDialogService;
         Player player;
+        Dragon dragon;
         public mapsPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
             : base(navigationService)
         {
-            Dragon dragon = new Dragon() { Armour = 50, Health = 1200, Damage = 80,Image = "dragon1.gif" };
+            dragon = new Dragon();
             player = new Player() { Coins = 2, Dragon = dragon, Name = playerName};    //aanmaken van speler
+            game = new Game();
+
             Coins = 2;
+
             Locations = new ObservableCollection<Location>();
             this.pageDialogService = pageDialogService;
 
 
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string filename = Path.Combine(path, "playerData.txt");
-            File.Delete(filename);
-            StreamWriter writer;
-            writer = File.CreateText(filename);
-            writer.WriteLine($"0;");
-            writer.WriteLine($"0;0;5;");
-            writer.Close();
-
             BtnInsideVisuable = false;
             PopUpVisuable = false;
             UpgradeButtonVisuable = false;
+
             PopUpAnswer = "";
             PopUpText = "";
             PopUpTitle = "";
             level = 1;
-            game = new Game();
-
-
 
             Device.StartTimer(TimeSpan.FromSeconds(2), () =>
             {
@@ -107,9 +100,13 @@ namespace locator3.ViewModels
                 addPointers(game.Pointers);
 
                 Title = game.name;
-                ChechIfBattle("battle"); //kijken of er een battle in zit en knoppen getoond moeten worden
+                if (await ChechIfBattle("battle") == false)  //kijken of er een battle in zit en knoppen getoond moeten worden
+                {
+                    timerEnabled = true;
+                }  
                 CoinsVisuable = game.coinsEanabled;
                 await Task.Delay(TimeSpan.FromSeconds(5));  //zeker zijn dat alles geladen is
+
             }
             else if (parameters.ContainsKey("player"))
             {
@@ -117,6 +114,13 @@ namespace locator3.ViewModels
                 Coins = player.Coins;
                 timerEnabled = true;
             }
+            else if (parameters.ContainsKey("dragon"))
+            {
+                dragon = parameters.GetValue<Dragon>("dragon");
+                player.Dragon = dragon;
+                timerEnabled = true;
+            }
+            await Task.Delay(TimeSpan.FromSeconds(2));
         }
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
@@ -304,18 +308,32 @@ namespace locator3.ViewModels
             await Application.Current.MainPage.DisplayAlert("done", "game ended", "ok");
             await NavigationService.NavigateAsync(nameof(MainPage));
         }
-        public void ChechIfBattle(string type)
+        public async Task<bool> ChechIfBattle(string type)
         {
+            bool dragonTrue = false;
             foreach (Pointer item in pointers) //kijken type van 1 pointer van het type is
             {
                 if (item.type == type)
                 {
                     UpgradeButtonVisuable = true;
+                    dragonTrue = true;
                 }
             }
             if (game.endType == type)   //kijken of eindtype battle is
             {
                 upgradeButtonVisuable = true;
+                dragonTrue = true;
+            }
+
+            if (dragonTrue)
+            {
+                await pageDialogService.DisplayAlertAsync("startGame", "chose your fighter", "ok");
+                await NavigationService.NavigateAsync(nameof(ChooseDragon));
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         

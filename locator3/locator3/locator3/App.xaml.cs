@@ -20,7 +20,7 @@ namespace locator3
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/BluetoothPage");
+            await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -40,6 +40,7 @@ namespace locator3
             containerRegistry.RegisterForNavigation<testPage, testPageViewModel>();
 
             containerRegistry.Register<IGameRepository<Game>, GameRepository>();
+            containerRegistry.RegisterForNavigation<ChooseDragon, ChooseDragonViewModel>();
         }
     }
 }

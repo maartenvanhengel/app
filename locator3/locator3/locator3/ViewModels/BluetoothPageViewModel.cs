@@ -33,7 +33,7 @@ namespace locator3.ViewModels
            public ICommand connectCommand { get; private set; }
            public ObservableCollection<BluetoothDeviceModel> Items { get; private set; }
 
-           private async void executeConnect()
+           private  void executeConnect()
            {
 
             bluetoothHelper.Getconnection();

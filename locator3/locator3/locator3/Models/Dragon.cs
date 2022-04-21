@@ -10,5 +10,6 @@ namespace locator3.Models
         public int Health { get; set; }
         public int Damage { get; set; }
         public int Armour { get; set; }
+        public string Name { get; set; }
     }
 }

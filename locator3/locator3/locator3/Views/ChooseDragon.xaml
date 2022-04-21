@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="locator3.Views.ChooseDragon">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="0" Text="&lt;" Command="{Binding leftCommand}"></Button>
+        <Image Grid.Column="1" Source="{Binding DragonImage}" IsAnimationPlaying="True"></Image>
+        <Button Grid.Column="2" Text=">" Command="{Binding rightCommand}"></Button>
+        <Label Grid.Row="1" Grid.Column="1" Text="{Binding DragonName}" HorizontalOptions="Center"></Label>
+      <!--  <BoxView Grid.Row="1" Grid.Column="1" Color="AliceBlue" VerticalOptions="End"></BoxView>  -->
+
+        <StackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="Center">
+            <Label Text="Stats:" HorizontalOptions="Center"></Label>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="HP:"></Label>
+                <Label Text="{Binding DragonHealth}"></Label>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Armour:"></Label>
+                <Label Text="{Binding DragonArmour}"></Label>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Damage:"></Label>
+                <Label Text="{Binding DragonDamage}"></Label>
+            </StackLayout>
+        </StackLayout>
+        <Button Text="USE" Grid.Row="3" Grid.Column="1" Command="{Binding useCommand}"></Button>
+        
+      <!--  <StackLayout>
+            <Image Source="dragon1.gif" IsAnimationPlaying="True" WidthRequest="200" HeightRequest="200" Grid.Row="0" Grid.Column="0" ></Image>
+            <Label Text="Smaug" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0"></Label>
+        </StackLayout> -->
+    </Grid>
+</ContentPage>
