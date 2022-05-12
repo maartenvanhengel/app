@@ -48,6 +48,7 @@ namespace locator3.ViewModels
             EndGameVisuable = false;
             CoinsEnabled = true;
             IndicatorVisible = false;
+            NameVisuable = false;
 
             ButtonAddText = "Add game";
             ButtonJoinText = "Join Game";
@@ -339,6 +340,12 @@ namespace locator3.ViewModels
             get { return playerName; }
             set { SetProperty(ref playerName, value); }
         }
+        private bool nameVisuable;
+        public bool NameVisuable
+        {
+            get { return nameVisuable; }
+            set { SetProperty(ref nameVisuable, value); }
+        }
         public ICommand NewGameCommand { get; private set; }
         public ICommand JoinGameFileCommand { get; private set; }
         public ICommand JoinGameCommand { get; private set; }
@@ -356,6 +363,7 @@ namespace locator3.ViewModels
             {
                 ButtonAddText = "close";
                 GridRow2Text = "Name: ";
+                NameVisuable = true;
                 StackVisuable = true;
                 GridRow2Visuable = true;
                 PublicVisuable = false;
@@ -379,7 +387,8 @@ namespace locator3.ViewModels
         }
         async void ExecuteJoinGame()
         {
-            var p = new NavigationParameters();
+            /*
+           var p = new NavigationParameters();
 
             if (name != null) //id opzoeken
             {
@@ -410,6 +419,8 @@ namespace locator3.ViewModels
               await pageDialogService.DisplayAlertAsync("Error", "error happend try again", "OK");
             }
             //gegevens ophalen uit database
+
+            */
         }
        
         public void ExecuteJoinOptions()
@@ -519,6 +530,7 @@ namespace locator3.ViewModels
                 gameName = Name;
                 Name = "";
                 questionMessage = "add an pointer for the player. Give the name of the pointer, lat-long coards or an adres and select an type. ";
+                NameVisuable = false;
             }
             else if (nextStep ==1)
             {
@@ -528,7 +540,7 @@ namespace locator3.ViewModels
                     nextStep = 2;
                     AddGameVisuable = false;
                     GridRow2Visuable = false;
-                    PublicVisuable = false; //kijken of die standaard aan staat 
+                    PublicVisuable = false; 
                     checkCoins();
                     EndGameVisuable = true;
                     PublicVisuable = true;
@@ -571,7 +583,7 @@ namespace locator3.ViewModels
                         File = new ShareFile(filename)
                     }) ;
                 }*/
-                int id = 25;
+                string id = "25";
                 Game newGame = new Game()
                 {
                     name = gameName,
@@ -580,14 +592,14 @@ namespace locator3.ViewModels
                     Pointers = pointers,
                     Id = id
                 };
-                await GameRepository.AddItemAsync(newGame);
+              //  await GameRepository.AddItemAsync(newGame);
                 await pageDialogService.DisplayAlertAsync("ID", "Game add, you'r id is: " + id, "Ok");
 
                 sendEmail(id);
             }
         }
 
-        public void sendEmail(int id)
+        public void sendEmail(string id)
         {
             try
             {

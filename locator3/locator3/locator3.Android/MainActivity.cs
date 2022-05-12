@@ -7,10 +7,12 @@ using Prism.Ioc;
 
 namespace locator3.Droid
 {
+
     [Activity(Theme = "@style/MainTheme",
               ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+
         const int RequestLocationId = 0;
         readonly string[] LocationPermissons =
         {
@@ -19,6 +21,7 @@ namespace locator3.Droid
         };
         protected override void OnStart()
         {
+
             base.OnStart();
 
             if ((int)Build.VERSION.SdkInt >= 23)
@@ -69,6 +72,7 @@ namespace locator3.Droid
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register any platform specific implementations
+            containerRegistry.Register<IFileHelper, FileHelper>();
         }
     }
 }

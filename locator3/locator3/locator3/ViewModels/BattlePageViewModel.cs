@@ -20,6 +20,7 @@ namespace locator3.ViewModels
         int level;
         int maxComputerHealth;
         int maxPlayerHealth;
+        bool specialAttack;
         Player player;
         Dragon dragon;
         Dragon opponentDragon;
@@ -39,6 +40,7 @@ namespace locator3.ViewModels
             Attack1Enabled = true;
             Attack2Enabled = true;
             Attack3Enabled = true;
+            specialAttack = true;
 
             attack1Command = new DelegateCommand(executeAttack1);
             attack2Command = new DelegateCommand(executeAttack2);
@@ -48,7 +50,7 @@ namespace locator3.ViewModels
 
             PopUpVisuable = true;
             GameVisuable = false;
-            AnimationVisuable = true;
+            SpecialAttackIceVisuable = false;
             int teller = 0;
 
             Device.StartTimer(TimeSpan.FromSeconds(5), () =>
@@ -85,12 +87,29 @@ namespace locator3.ViewModels
             if (parameters.ContainsKey("level"))
             {
                 level = parameters.GetValue<int> ("level");
+                checkLevel(level);
+            }
+            else if (parameters.ContainsKey("endgame"))
+            {
+                level = parameters.GetValue<int>("endgame");
+
+                ComputerImage = "endDragon.gif";
+                ComputerHealth = 1100 + level * 150;
+                ComputerName = "Herensuge";
+                ComputerDamage = 100 + level * 10;
+                ComputerArmour = 80 + level * 5;
+                Background = "backgroundFire.png";
+
+                opponentDragon.Armour = ComputerArmour;
+                opponentDragon.Damage = ComputerDamage;
+                opponentDragon.Health = Convert.ToInt32(ComputerHealth);
+                maxComputerHealth = Convert.ToInt32(ComputerHealth);
             }
             else
             {
                 level = 1;
+                checkLevel(level);
             }
-            checkLevel(level);
         }
         private int button1Pressed;
         public int Button1Pressed
@@ -294,27 +313,46 @@ namespace locator3.ViewModels
                 ComputerImage = "dragon6.gif";
                 ComputerHealth = 800;
                 ComputerName = "viridisaliquid";
-                ComputerDamage = 20;
-                ComputerArmour = 30;
+                ComputerDamage = 60;
+                ComputerArmour = 10;
                 Background = "backgroundNature.png";
+                opponentDragon.SpecialAttack = "leaves";
             }
             else if (level == 2)    //fire dragon
             {
                 ComputerImage = "dragon1.1.gif";
                 ComputerHealth = 1000;
                 ComputerName = "Brantley";
-                ComputerDamage = 60;
-                ComputerArmour = 45;
-                Background = "backgroundFire.png";
+                ComputerDamage = 65;
+                ComputerArmour = 20;
+                Background = "backgroundLava.png";
             }
             else if (level == 3) //ice dragon
             {
-                ComputerImage = "dragon7.gif";
+                ComputerImage = "dragonIce.gif";
                 ComputerHealth = 1100;
                 ComputerName = "Frostine";
                 ComputerDamage = 100;
-                ComputerArmour = 70;
-                Background = "backgroundZee.jpg";
+                ComputerArmour = 40;
+                Background = "backgroundSnow.jpg";
+            }
+            else if (level == 4) //sand dragon
+            {
+                ComputerImage = "dragonSand.gif";
+                ComputerHealth = 1300;
+                ComputerName = "Danbala";
+                ComputerDamage = 120;
+                ComputerArmour = 40;
+                Background = "backgroundSand.jpg";
+            }
+            else if (level == 5) //money dragon
+            {
+                ComputerImage = "dragonMoney.gif";
+                ComputerHealth = 1300;
+                ComputerName = "Moneyline";
+                ComputerDamage = 120;
+                ComputerArmour = 40;
+                Background = "backgroundMoney.jpg";
             }
             else
             {
@@ -329,37 +367,6 @@ namespace locator3.ViewModels
                 ComputerArmour = 100 + level *5;
                 Background = "backgroundNature.png";
             }
-       /*     else if (level == 4)
-            {
-                opponentDragon.Armour = 70;
-                opponentDragon.Damage = 90;
-                opponentDragon.Health = 1500;
-
-                attackAmountPlayer[0] = 0.05;
-                attackAmountPlayer[1] = 0.07;
-                attackAmountPlayer[2] = 0.09;
-
-                attackAmountComputer[0] = 0.07;
-                attackAmountComputer[1] = 0.09;
-                attackAmountComputer[2] = 0.12;
-            }
-            else if (level == 5)
-            {
-                opponentDragon.Armour = 90;
-                opponentDragon.Damage = 90;
-                opponentDragon.Health = 1600;
-
-                attackAmountPlayer[0] = 0.03;
-                attackAmountPlayer[1] = 0.05;
-                attackAmountPlayer[2] = 0.07;
-
-                attackAmountComputer[0] = 0.08;
-                attackAmountComputer[1] = 0.10;
-                attackAmountComputer[2] = 0.13;
-            }
-            attackAmountPlayer[0] = attackAmountPlayer[0] + (playerHealth / 100);*/
-
-
             opponentDragon.Armour = ComputerArmour;
             opponentDragon.Damage = ComputerDamage;
             opponentDragon.Health = Convert.ToInt32(ComputerHealth);
@@ -368,9 +375,16 @@ namespace locator3.ViewModels
         private void executeAttack1()
         {
 
-            LastPlayerAttack = "-8";
             double attack = dragon.Damage - opponentDragon.Armour;
-            ComputerHealth = ComputerHealth - attack;
+            if (attack < 0)
+            {
+                LastPlayerAttack = "armour to strong";
+            }
+            else
+            {
+                ComputerHealth = ComputerHealth - attack;
+                LastPlayerAttack ="-" + Convert.ToString(attack);
+            }
             checkPlayerHealth();
 
 
@@ -388,14 +402,21 @@ namespace locator3.ViewModels
             double attack = 0;
             if (random == 0)
             {
-                attack = dragon.Damage +10 - opponentDragon.Armour; ;
-                LastPlayerAttack = "-10" ;
+                attack = dragon.Damage +10 - opponentDragon.Armour;
+                if (attack < 0)
+                {
+                    LastPlayerAttack = "armour to strong";
+                }
+                else
+                {
+                    LastPlayerAttack = Convert.ToString(attack);
+                    ComputerHealth = ComputerHealth - attack;
+                }
             }
             else
             {
                 LastPlayerAttack = "attack failed";
             }
-            ComputerHealth = ComputerHealth - attack;
             checkPlayerHealth();
         }
         private void executeAttack3()
@@ -409,17 +430,25 @@ namespace locator3.ViewModels
                   if (random == 0)
                   {
                       attack = dragon.Damage + 20 - opponentDragon.Armour;
-                      LastPlayerAttack = "-13";
-                  }
+                    if (attack < 0)
+                    {
+                        LastPlayerAttack = "armour to strong";
+                    }
+                else
+                {
+                    LastPlayerAttack = Convert.ToString(attack);
+                    ComputerHealth = ComputerHealth - attack;
+                }
+                    }
                   else
                   {
                       LastPlayerAttack = "attack failed";
                   }
-                  ComputerHealth = ComputerHealth - attack;
                   checkPlayerHealth();
 
             //    playAnimation("fireGif.gif"); */
-
+            //  playAnimation("leaves");
+            
             ComputerHealth = 0;
             checkPlayerHealth();
         }
@@ -441,60 +470,71 @@ namespace locator3.ViewModels
 
         private void computerAttack()
         {
-            Random rnd = new Random();
-            int random = rnd.Next(0, 3);
-            double attack =0;
-            if (random ==0)     //computer doet attack1
+            double attack = 0;
+            double Procent = 0.25 * maxComputerHealth;
+            if (computerHealth < Procent && specialAttack )
             {
-                    attack = opponentDragon.Damage -dragon.Armour;
-                    LastComputerAttack = "-5" ;
+                attack = 0.2 * maxPlayerHealth;
+                playAnimation(opponentDragon.SpecialAttack);
+                specialAttack = false;
             }
-            else if(random == 1) //computer doet attack2
+            else
             {
-                Random rndAttack = new Random();
-                int randomAttack = rnd.Next(0, 2);
-                
+                Random rnd = new Random();
+                int random = rnd.Next(0, 3);
+                if (random == 0)     //computer doet attack1
+                {
+                    attack = opponentDragon.Damage - dragon.Armour;
+                    LastComputerAttack = Convert.ToString(attack);
+                }
+                else if (random == 1) //computer doet attack2
+                {
+                    Random rndAttack = new Random();
+                    int randomAttack = rnd.Next(0, 2);
+
                     if (randomAttack == 0)
                     {
-                    attack = opponentDragon.Damage + 10 - dragon.Armour;
-                    LastComputerAttack = "-10";
+                        attack = opponentDragon.Damage + 10 - dragon.Armour;
+                        LastComputerAttack = Convert.ToString(attack);
                     }
                     else
                     {
                         LastComputerAttack = "attack failed";
                     }
-                
-            }
-            else //computer doet attack 3
-            { Random rndAttack = new Random();
+
+                }
+                else //computer doet attack 3
+                {
+                    Random rndAttack = new Random();
                     int randomAttack = rnd.Next(0, 4);
                     if (randomAttack == 0)
                     {
-                    attack = opponentDragon.Damage + 20 - dragon.Armour;
-                    LastComputerAttack = "-15";
+                        attack = opponentDragon.Damage + 20 - dragon.Armour;
+                        LastComputerAttack = Convert.ToString(attack);
                     }
                     else
                     {
                         LastComputerAttack = "missed";
                     }
-                
+
+                }
             }
-            if (PlayerHealth <= 2)
-            {
-                PlayerHealth = PlayerHealth - attack;
-            }
-            else if(playerHealth <= 4)
-            {
-                PlayerHealth = PlayerHealth - (attack / 2);
-            }
-            else
-            {
-                PlayerHealth = PlayerHealth - (attack / 3);
-            }
-            if (playerHealth <= 0)
-            {
-                endGame(ComputerName);
-            }
+                if (PlayerHealth <= 2)
+                {
+                    PlayerHealth = PlayerHealth - attack;
+                }
+                else if (playerHealth <= 4)
+                {
+                    PlayerHealth = PlayerHealth - (attack / 2);
+                }
+                else
+                {
+                    PlayerHealth = PlayerHealth - (attack / 3);
+                }
+                if (playerHealth <= 0)
+                {
+                    endGame(ComputerName);
+                }
         }
         private async void endGame(string who)
         {
@@ -574,19 +614,33 @@ namespace locator3.ViewModels
             get { return animationString; }
             set { SetProperty(ref animationString, value); }
         }
-        private bool animationVisuable;
-        public bool AnimationVisuable
+        private bool specialAttackIceVisuable;
+        public bool SpecialAttackIceVisuable
         {
-            get { return animationVisuable; }
-            set { SetProperty(ref animationVisuable, value); }
+            get { return specialAttackIceVisuable; }
+            set { SetProperty(ref specialAttackIceVisuable, value); }
         }
-        private async void playAnimation(string animation)
+        private bool specialAttackLeavesVisuable;
+        public bool SpecialAttackLeavesVisuable
         {
-            AnimationVisuable = true;
-            AnimationString = animation;
+            get { return specialAttackLeavesVisuable; }
+            set { SetProperty(ref specialAttackLeavesVisuable, value); }
+        }
 
-            await Task.Delay(TimeSpan.FromSeconds(3));  //zeker zijn dat alles geladen is
-            AnimationVisuable = false;
+        private async void playAnimation(string specialAttack)
+        {
+            if (specialAttack == "ice")
+            {
+                SpecialAttackIceVisuable = true;
+                await Task.Delay(TimeSpan.FromSeconds(3));  //wachten tot verdwijnen
+                SpecialAttackIceVisuable = false;
+            }
+            else if (specialAttack == "leaves")
+            {
+                SpecialAttackLeavesVisuable = true;
+                await Task.Delay(TimeSpan.FromSeconds(3));  //wachten tot verdwijnen
+                SpecialAttackLeavesVisuable = false;
+            }
         }
 
         

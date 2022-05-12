@@ -37,9 +37,11 @@ namespace locator3.ViewModels
             {
                 Name = "Gunde",
                 Image = "dragon1.gif",
-                Health = 1200,
-                Damage = 40,
-                Armour = 40
+                Health = 800,
+                Damage = 115,
+                Armour = 20,
+                Height = 2.5,
+                Weight = 250
             };
             dragons[0] = dragon1;
             dragon2 = new Dragon()
@@ -47,8 +49,10 @@ namespace locator3.ViewModels
                 Name = "Neldro",
                 Image = "dragon2.gif",
                 Health = 1000,
-                Damage = 50,
-                Armour = 45
+                Damage = 100,
+                Armour = 20,
+                Height = 2.5,
+                Weight = 250
             };
             dragons[1] = dragon2;
             dragon3 = new Dragon()
@@ -56,8 +60,10 @@ namespace locator3.ViewModels
                 Name = "Smaug",
                 Image = "dragon3.gif",
                 Health = 800,
-                Damage = 70,
-                Armour = 30
+                Damage = 100,
+                Armour = 30,
+                Height = 2.5,
+                Weight = 250
             };
             dragons[2]= dragon3;
             dragon4 = new Dragon()
@@ -65,8 +71,10 @@ namespace locator3.ViewModels
                 Name = "Igud",
                 Image = "dragon4.gif",
                 Health = 800,
-                Damage = 50,
-                Armour = 50
+                Damage = 110,
+                Armour = 25,
+                Height = 2.5,
+                Weight = 250
             };
             dragons[3] = dragon4;
             dragon5 = new Dragon()
@@ -74,8 +82,10 @@ namespace locator3.ViewModels
                 Name = "Byrsis",
                 Image = "dragon5.gif",
                 Health = 900,
-                Damage = 60,
-                Armour = 40
+                Damage = 105,
+                Armour = 22,
+                Height = 2.5,
+                Weight = 250
             };
             dragons[4] = dragon5;
 
@@ -135,6 +145,8 @@ namespace locator3.ViewModels
                     DragonArmour = chosenDragon.Armour;
                     DragonHealth = chosenDragon.Health;
                     DragonName = chosenDragon.Name;
+                    DragonWeight = chosenDragon.Weight;
+                    DragonHeight = chosenDragon.Height;
                 }; }
         }
         private string dragonImage;
@@ -166,6 +178,18 @@ namespace locator3.ViewModels
         {
             get { return dragonName; }
             set { SetProperty(ref dragonName, value); }
+        }
+        private double dragonWeight;
+        public double DragonWeight
+        {
+            get { return dragonWeight; }
+            set { SetProperty(ref dragonWeight, value); }
+        }
+        private double dragonheight;
+        public double DragonHeight
+        {
+            get { return dragonheight; }
+            set { SetProperty(ref dragonheight, value); }
         }
     }
 }

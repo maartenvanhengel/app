@@ -61,8 +61,7 @@
         <Label IsVisible="{Binding NoInternetVisuable}" Text="No internet connection" TextColor="red" Margin="0,-4,0,0" HorizontalOptions="Center" Grid.ColumnSpan="2"></Label>
         <!--name -->
         <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="-2,-2,-2,-6" BackgroundColor="#04afaf" >
-
-            <Label Text="{Binding PlayerName}" HorizontalOptions="Start" TextColor="Black" Margin="30,0,0,0"></Label>
+        <Label Text="{Binding PlayerName}" HorizontalOptions="Start" TextColor="Black" Margin="30,0,0,0"></Label>
 
             <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" Margin="0,0,30,0" IsVisible="{Binding CoinsVisuable}">
                 <Image Source="coin.png" HeightRequest="15" ></Image>
@@ -75,7 +74,7 @@
             <Label Text="{Binding Coins}" TextColor="Black" Margin="0,0,5,0"/>
         </StackLayout>  -->
         
-        <ImageButton IsVisible="{Binding UpgradeButtonVisuable}" Source="swipeUp.jpg" BackgroundColor="Transparent" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,-5" HorizontalOptions="CenterAndExpand" Command="{Binding showUpgradeCommand}"></ImageButton>
+        <ImageButton IsVisible="{Binding UpgradeButtonVisuable}" Source="swipeUp.png" BackgroundColor="Transparent" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,-5" HorizontalOptions="CenterAndExpand" Command="{Binding showUpgradeCommand}"></ImageButton>
         <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Padding="70,0,70,0" x:Name="btnTest" IsVisible="{Binding BtnInsideVisuable}" Text="go inside" Margin="0,0,0,5" Style="{StaticResource buttonStyle}" ></Button>
         
         <!--popUp-->

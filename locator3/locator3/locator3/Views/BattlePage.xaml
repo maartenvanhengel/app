@@ -43,7 +43,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <!-- achtergrond -->
+        <!-- achtergrond  -->
         <Image Aspect="Fill"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="8" Source="{Binding Background}" HorizontalOptions="Fill" VerticalOptions="Fill"></Image>  
         <Label Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="0" Text="{Binding AreaName}" FontSize="Large" TextColor="White" Style="{StaticResource baseStyle}"></Label>
 
@@ -73,24 +73,28 @@
         
         <!--computer-->
         <Image Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Source="{Binding ComputerImage}" IsAnimationPlaying="True" IsVisible="{Binding GameVisuable}" Margin="0,0,20,0"></Image>
-        <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding LastPlayerAttack}"  VerticalOptions="EndAndExpand" IsVisible="{Binding GameVisuable}" ></Label>
-        <ProgressBar Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" ScaleY="3" Progress="{Binding ComputerHealthProgress}" ProgressColor="#04aaad" IsVisible="{Binding GameVisuable}" Margin="0,0,30,0"/>
-        <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding ComputerName}" IsVisible="{Binding GameVisuable}"></Label>
+        <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding LastPlayerAttack}"  VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding GameVisuable}" TextColor="White" FontSize="Large" Margin="0,10,0,0"></Label>
+        <ProgressBar Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" ScaleY="3" Progress="{Binding ComputerHealthProgress}" ProgressColor="#04aaad" IsVisible="{Binding GameVisuable}" Margin="0,0,30,0" />
+        <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding ComputerName}" IsVisible="{Binding GameVisuable}" BackgroundColor="#C0C0C0" VerticalOptions="Start" Margin="0,-5,30,0"></Label>
+
 
         <!--player -->
         <Image Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Source="{Binding DragonImage}" IsAnimationPlaying="True" IsVisible="{Binding GameVisuable}" Margin="20,0,0,0"></Image>
-        <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding LastComputerAttack}" HorizontalOptions="Center" VerticalOptions="EndAndExpand" IsVisible="{Binding GameVisuable}"></Label>
+        <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding LastComputerAttack}"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center" IsVisible="{Binding GameVisuable}" TextColor="White" FontSize="Large" ></Label>
         <ProgressBar Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" ScaleY="3" Progress="{Binding PlayerHealthProgress}" ProgressColor="#04aaad" IsVisible="{Binding GameVisuable}" Margin="30,0,0,0"/>
-        <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding PlayerName}" IsVisible="{Binding GameVisuable}" Margin="15,0,0,0"></Label>
+        <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding PlayerName}" IsVisible="{Binding GameVisuable}" Margin="30,-5,0,0" BackgroundColor="#C0C0C0" TextColor="Black" Padding="3,0,0,0"></Label>
 
 
 
         <!-- animations -->
-        <!--<Image Aspect="Fill"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="8" Source="fireGif.gif" IsAnimationPlaying="True" IsVisible="{Binding AnimationVisuable}"></Image>-->
-    <!--    <Image Aspect="Fill" IsAnimationPlaying="True" Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" Source="fireGifLeft.gif"></Image>
-        <Image Aspect="Fill" IsAnimationPlaying="True" Grid.Row="0" Grid.Column="3" Grid.RowSpan="8" Source="fireGifRight.gif"></Image>
-        <Image Aspect="Fill" IsAnimationPlaying="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="fireGifTop.gif"></Image>
-        <Image Aspect="Fill" IsAnimationPlaying="True" Grid.Row="6" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="4" Source="fireGif.gif"></Image> -->
+        <!--leaves-->
+        <Image IsVisible="{Binding SpecialAttackLeavesVisuable}" Aspect="Fill" IsAnimationPlaying="True" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="8" Source="leavesRight.png"></Image>
+        <Image IsVisible="{Binding SpecialAttackLeavesVisuable}" Aspect="Fill" IsAnimationPlaying="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="8" Source="leavesLeft.png"></Image>
+
+
+        <!--ICE-->
+        <Image IsVisible="{Binding SpecialAttackIceVisuable}" Aspect="Fill" IsAnimationPlaying="True" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="8" Source="iceRight.png"></Image>
+        <Image IsVisible="{Binding SpecialAttackIceVisuable}" Aspect="Fill" IsAnimationPlaying="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="8" Source="iceLeft.png"></Image>
 
         <Button Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" Margin="15,0,0,4" HorizontalOptions="Start" Text="attack1" Style="{StaticResource buttonStyle}" Command="{Binding attack1Command}" IsEnabled="{Binding Attack1Enabled} "></Button>
         <Button Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,4" HorizontalOptions="Center" Text="attack2" Style="{StaticResource buttonStyle}" Command="{Binding attack2Command}" IsEnabled="{Binding Attack2Enabled}" ></Button>

@@ -11,5 +11,14 @@ namespace locator3.Models
         public int Damage { get; set; }
         public int Armour { get; set; }
         public string Name { get; set; }
+        public double Height { get; set; }
+        public double Weight { get; set; }
+        public string SpecialAttack { get; set; }
+
+        public Dragon()
+        {
+            SpecialAttack = null;
+        }
+
     }
 }

@@ -187,7 +187,7 @@ namespace locator3.ViewModels
         {
             var p = new NavigationParameters();
             p.Add("player", player);
-            await NavigationService.NavigateAsync(nameof(UpgradePage), p);
+            await NavigationService.NavigateAsync(nameof(UpgradePage), p, true, true);
         }
         public void executeCancelPopUp()
         {
@@ -233,7 +233,6 @@ namespace locator3.ViewModels
             get { return popUpAnswer; }
             set { SetProperty(ref popUpAnswer, value); }
         }
-
         public void setMarkers()
         {
             foreach (Pointer pointer in pointers)
@@ -280,7 +279,7 @@ namespace locator3.ViewModels
                         p.Add("level", level);
                         p.Add("player", player);
                         p.Add("name", pointer.Name);
-                        await NavigationService.NavigateAsync(nameof(BattlePage), p, true, false);
+                        await NavigationService.NavigateAsync(nameof(BattlePage), p, true, true);
                         level++;
                         //timer uit als battle voltooid is
                     }
@@ -305,8 +304,21 @@ namespace locator3.ViewModels
         }
         public async void EndGame()
         {
-            await Application.Current.MainPage.DisplayAlert("done", "game ended", "ok");
-            await NavigationService.NavigateAsync(nameof(MainPage));
+            if (game.endType == "battle")
+            {
+                await Task.Delay(TimeSpan.FromSeconds(5));
+                var p = new NavigationParameters();
+                p.Add("endgame", level+5);
+                p.Add("player", player);
+                p.Add("name", "End boss");
+                await NavigationService.NavigateAsync(nameof(BattlePage),p, true, true);
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("done", "game ended", "ok");
+                var p = new NavigationParameters();
+                await NavigationService.NavigateAsync(nameof(MainPage),p, true, true);
+            }
         }
         public async Task<bool> ChechIfBattle(string type)
         {
@@ -328,7 +340,8 @@ namespace locator3.ViewModels
             if (dragonTrue)
             {
                 await pageDialogService.DisplayAlertAsync("startGame", "chose your fighter", "ok");
-                await NavigationService.NavigateAsync(nameof(ChooseDragon));
+                var p = new NavigationParameters();
+                await NavigationService.NavigateAsync(nameof(ChooseDragon),p, true, true);
                 return true;
             }
             else

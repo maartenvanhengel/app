@@ -67,7 +67,7 @@
 
             <!--name-->
             <StackLayout IsVisible="{Binding GridRow2Visuable}" Orientation="Horizontal">
-                <Label  Text="{Binding GridRow2Text}" Style="{StaticResource labelStyle}" Margin="15,5,0,0"></Label>
+            <Label  Text="{Binding GridRow2Text}" Style="{StaticResource labelStyle}" Margin="15,5,0,0"></Label>
                 <!---questionbutton-->
                 <ImageButton Source="question.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="EndAndExpand" BackgroundColor="White"  Margin="5,5,5,0" Command="{Binding QuestionCommand}"></ImageButton>
             </StackLayout>
@@ -114,9 +114,10 @@
             <Picker SelectedItem="{Binding SelectedPublicGame}" SelectedIndex="{Binding PickerPublicSelected}" ItemDisplayBinding="{Binding name}" Title="Select an option" IsVisible="{Binding JoinGameVisuable}" Style="{StaticResource pickerStyle}" ItemsSource="{Binding Games}">
                 <!--Public items-->
             </Picker>
+            
             <!-- Naam speler  -->
-            <Label Text="Your name:" IsVisible="{Binding SelectedPublicGame}" Style="{StaticResource labelStyle}"></Label>
-            <Entry Text="{Binding PlayerName}" IsVisible="{Binding SelectedPublicGame}" Style="{StaticResource entryStyle}"></Entry>
+            <Label Text="Your name:" IsVisible="{Binding NameVisuable}" Style="{StaticResource labelStyle}"></Label>
+            <Entry Text="{Binding PlayerName}" IsVisible="{Binding NameVisuable}" Style="{StaticResource entryStyle}"></Entry>
 
 
             <Button IsVisible="{Binding JoinGameVisuable}" Text="join game" Style="{StaticResource buttonStyle}" Margin="20,8,20,0" Command="{Binding JoinGameCommand}"></Button>

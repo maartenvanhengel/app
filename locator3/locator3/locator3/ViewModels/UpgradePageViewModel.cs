@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace locator3.ViewModels
@@ -29,14 +30,7 @@ namespace locator3.ViewModels
             /*var patht = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var filenamet = Path.Combine(patht, "playerData.txt");
             File.Delete(filenamet);*/
-            //Health = 0;
-            HealthCost = 1;
-
-            //Shield = 0;
-            ArmourCost = 2;
-
-            //AttackDamage = 1;
-            AttackDamageCost = 1;
+           
 
             healthCommand = new DelegateCommand(executeHealth);
             ArmourCommand = new DelegateCommand(executeArmour);
@@ -46,6 +40,10 @@ namespace locator3.ViewModels
         }
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
+            HealthCost = Preferences.Get("HealthCost", 1);
+            ArmourCost = Preferences.Get("ArmourCost", 2);
+            AttackDamageCost = Preferences.Get("AttackDamageCost", 1);
+
             if (parameters.ContainsKey("player"))
             {
                 player = parameters.GetValue<Player>("player");
@@ -66,11 +64,11 @@ namespace locator3.ViewModels
                await NavigationService.GoBackAsync();
             }
         }
-        public async override void OnNavigatedFrom(INavigationParameters parameters)
+        public override void OnNavigatedFrom(INavigationParameters parameters)
         {
-            var p = new NavigationParameters();
-            p.Add("player", player);
-            await NavigationService.GoBackAsync(p);
+            Preferences.Set("HealthCost", HealthCost);
+            Preferences.Set("AttackDamageCost", AttackDamageCost);
+            Preferences.Set("ArmourCost", ArmourCost);
         }
         private string dragonName;
         public string DragonName

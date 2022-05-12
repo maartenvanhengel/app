@@ -1,3 +1,5 @@
+using locator3.Models;
+using locator3.Repositories;
 using locator3.ViewModels;
 using locator3.Views;
 using Prism;
@@ -39,7 +41,8 @@ namespace locator3
             containerRegistry.RegisterForNavigation<SetLocationPage, SetLocationPageViewModel>();
             containerRegistry.RegisterForNavigation<testPage, testPageViewModel>();
 
-            containerRegistry.Register<IGameRepository<Game>, GameRepository>();
+            containerRegistry.Register<IGameRepository<Game>, fireBaseRepository>();
+            containerRegistry.RegisterSingleton<GamesContext>();
             containerRegistry.RegisterForNavigation<ChooseDragon, ChooseDragonViewModel>();
         }
     }

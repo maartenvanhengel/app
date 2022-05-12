@@ -79,8 +79,8 @@
             </StackLayout>
             <BoxView HeightRequest="0.5" Color="Black" Margin="50,0,50,0" ></BoxView>
         </StackLayout>
-        <Label Text="Health Potion" Style="{StaticResource labelStyle}" Margin="30,0,0,0" Grid.Column="0" Grid.Row="2" HorizontalOptions="Start"></Label>
-        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1" VerticalOptions="Center">
+        <Label Text="Health Potion" Style="{StaticResource labelStyle}" Margin="80,0,0,0" Grid.Column="0" Grid.Row="2" HorizontalOptions="Start"></Label>
+        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,80,0">
             <Label Text="{Binding Health}"></Label>
             <ImageButton Source="upgrade.png" BackgroundColor="White" WidthRequest="30" HeightRequest="20" HorizontalOptions="End" Command="{Binding healthCommand}"></ImageButton>
         </StackLayout>
@@ -90,10 +90,10 @@
             <Label Text="{Binding HealthCost}" ></Label>
         </StackLayout>
         
-        <Label Text="Shield" Style="{StaticResource labelStyle}" Margin="30,0,0,0" Grid.Column="0" Grid.Row="4" HorizontalOptions="Start"></Label>
-        <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="1" VerticalOptions="Center">
+        <Label Text="Armour" Style="{StaticResource labelStyle}" Margin="80,0,0,0" Grid.Column="0" Grid.Row="4" HorizontalOptions="Start"></Label>
+        <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,80,0">
             <Label Text="{Binding Armour}"></Label>
-            <ImageButton Source="upgrade.png" WidthRequest="30" HeightRequest="20" HorizontalOptions="End" BackgroundColor="White" Command="{Binding shieldCommand}"></ImageButton>
+            <ImageButton Source="upgrade.png" WidthRequest="30" HeightRequest="20" HorizontalOptions="End" BackgroundColor="White" Command="{Binding ArmourCommand}"></ImageButton>
         </StackLayout>
         <StackLayout Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="Center" Margin="0,-8,0,0">
             <Label Text="+10 cost:"></Label>
@@ -101,8 +101,8 @@
             <Label Text="{Binding  ArmourCost}" ></Label>
         </StackLayout>
     
-        <Label Text="Attack damage" Style="{StaticResource labelStyle}" Margin="30,0,0,0" Grid.Column="0" Grid.Row="6" HorizontalOptions="Start"></Label>
-        <StackLayout Orientation="Horizontal" Grid.Row="6" Grid.Column="1" VerticalOptions="Center">
+        <Label Text="Attack damage" Style="{StaticResource labelStyle}" Margin="80,0,0,0" Grid.Column="0" Grid.Row="6" HorizontalOptions="Start"></Label>
+        <StackLayout Orientation="Horizontal" Grid.Row="6" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,80,0">
             <Label Text="{Binding AttackDamage}"></Label>
             <ImageButton Source="upgrade.png" WidthRequest="30" HeightRequest="20" HorizontalOptions="End" BackgroundColor="White" Command="{Binding attackDamageCommand}"></ImageButton>
         </StackLayout>
