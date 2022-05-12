@@ -9,7 +9,6 @@ C:\Users\Maarten Vanhengel\Documents\git\app\locator3\locator3\locator3\obj\Debu
 C:\Users\Maarten Vanhengel\Documents\git\app\locator3\locator3\locator3\obj\Debug\netstandard2.1\Views\MainPage.xaml.g.cs
 C:\Users\Maarten Vanhengel\Documents\git\app\locator3\locator3\locator3\obj\Debug\netstandard2.1\Views\mapsPage.xaml.g.cs
 C:\Users\Maarten Vanhengel\Documents\git\app\locator3\locator3\locator3\obj\Debug\netstandard2.1\Views\SetLocationPage.xaml.g.cs
-C:\Users\Maarten Vanhengel\Documents\git\app\locator3\locator3\locator3\obj\Debug\netstandard2.1\Views\testPage.xaml.g.cs
 C:\Users\Maarten Vanhengel\Documents\git\app\locator3\locator3\locator3\obj\Debug\netstandard2.1\Views\UpgradePage.xaml.g.cs
 C:\Users\Maarten Vanhengel\Documents\git\app\locator3\locator3\locator3\obj\Debug\netstandard2.1\locator3.AssemblyInfoInputs.cache
 C:\Users\Maarten Vanhengel\Documents\git\app\locator3\locator3\locator3\obj\Debug\netstandard2.1\locator3.AssemblyInfo.cs

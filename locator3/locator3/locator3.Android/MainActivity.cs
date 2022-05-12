@@ -72,7 +72,7 @@ namespace locator3.Droid
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register any platform specific implementations
-            containerRegistry.Register<IFileHelper, FileHelper>();
+          //  containerRegistry.Register<IFileHelper, FileHelper>();
         }
     }
 }

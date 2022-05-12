@@ -30,7 +30,7 @@ namespace locator3.ViewModels
 
         public IList<Game> games;
         public ObservableCollection<Game> Games { get; private set; }
-        public MainPageViewModel(INavigationService navigationService, IGameRepository<Game> gameRepository, IPageDialogService pageDialogService)
+        public MainPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService, IGameRepository<Game> gameRepository)
             : base(navigationService)
         {
             Games = new ObservableCollection<Game>();
@@ -265,7 +265,6 @@ namespace locator3.ViewModels
             get { return buttonAddText; }
             set { SetProperty(ref buttonAddText, value); }
         }
-        private string name;
 
         private string buttonJoinText;
         public string ButtonJoinText
@@ -273,6 +272,7 @@ namespace locator3.ViewModels
             get { return buttonJoinText; }
             set { SetProperty(ref buttonJoinText, value); }
         }
+        private string name;
         public string Name
         {
             get { return name; }
@@ -387,14 +387,14 @@ namespace locator3.ViewModels
         }
         async void ExecuteJoinGame()
         {
-            /*
+            
            var p = new NavigationParameters();
 
             if (name != null) //id opzoeken
             {
                 try
                 {
-                   var item=  await GameRepository.GetItemByIdAsync(Convert.ToInt32(name));
+                   var item=  await GameRepository.GetItemByIdAsync(name);
                     if (item == null)
                     {
                         await pageDialogService.DisplayAlertAsync("ERROR", "Id not found", "OK");
@@ -420,7 +420,7 @@ namespace locator3.ViewModels
             }
             //gegevens ophalen uit database
 
-            */
+            
         }
        
         public void ExecuteJoinOptions()
@@ -468,7 +468,7 @@ namespace locator3.ViewModels
                 {
                     extraText = extraText + ";" + RadioBtnChecked; ;
                 }
-                pageDialogService.DisplayAlertAsync("ok", extraText, "ok");
+                
             pointer.text = extraText;
             pointers.Add(pointer);
                 
@@ -583,19 +583,17 @@ namespace locator3.ViewModels
                         File = new ShareFile(filename)
                     }) ;
                 }*/
-                string id = "25";
                 Game newGame = new Game()
                 {
                     name = gameName,
                     endType = convertEndGame(SelectedEndGame),
                     isPublic = IsPublic,
-                    Pointers = pointers,
-                    Id = id
+                    Pointers = pointers
                 };
-              //  await GameRepository.AddItemAsync(newGame);
-                await pageDialogService.DisplayAlertAsync("ID", "Game add, you'r id is: " + id, "Ok");
+                string idd = await GameRepository.AddItemAsync(newGame);
+                await pageDialogService.DisplayAlertAsync("ID", "Game add, you'r id is: " + idd, "Ok");
 
-                sendEmail(id);
+              //  sendEmail(idd);
             }
         }
 

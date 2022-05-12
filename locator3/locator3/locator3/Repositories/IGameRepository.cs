@@ -7,8 +7,8 @@ namespace locator3
 {
    public interface IGameRepository<T>
     {
-        //    Task<bool> AddItemAsync(T game);
-        //    Task<T> GetItemByIdAsync(int id);
+        Task<string> AddItemAsync(T game);
+        Task<T> GetItemByIdAsync(string id);
         
         Task<IEnumerable<T>> GetItemsAsync(bool foreRefresh = false);
     }

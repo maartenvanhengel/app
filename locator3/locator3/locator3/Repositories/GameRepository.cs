@@ -21,9 +21,9 @@ namespace locator3.Repositories
             return await SaveChangesAsync();
         }
 
-        public async Task<Game> GetItemByIdAsync(int id)
+        public async Task<Game> GetItemByIdAsync(string id)
         {
-            // return await context.Games.SingleAsync(item => item.Id == id);
+            return await context.Games.SingleAsync(item => item.Id == id);
             return null;
         }
         private async Task<bool> SaveChangesAsync()
@@ -39,6 +39,11 @@ namespace locator3.Repositories
         public async Task<IEnumerable<Game>> GetItemsAsync(bool forceRefresh = false)
         {
             return await context.Games.ToListAsync();
+        }
+
+        Task<string> IGameRepository<Game>.AddItemAsync(Game game)
+        {
+            throw new NotImplementedException();
         }
     }
 

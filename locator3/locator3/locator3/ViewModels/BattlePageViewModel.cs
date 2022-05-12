@@ -53,7 +53,7 @@ namespace locator3.ViewModels
             SpecialAttackIceVisuable = false;
             int teller = 0;
 
-            Device.StartTimer(TimeSpan.FromSeconds(5), () =>
+            Device.StartTimer(TimeSpan.FromSeconds(4), () =>
             {
                 if (teller ==0)
                 {

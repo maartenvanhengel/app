@@ -16,6 +16,16 @@ namespace locator3.Repositories
             this.context = context;
         }
 
+        public Task<string> AddItemAsync(Game game)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Game> GetItemByIdAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<Game>> GetItemsAsync(bool forceRefresh = false)
         {
             return await context.Games.ToListAsync();

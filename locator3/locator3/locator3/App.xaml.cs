@@ -36,10 +36,8 @@ namespace locator3
             containerRegistry.RegisterForNavigation<BattlePage, BattlePageViewModel>();
             containerRegistry.RegisterForNavigation<mapsPage, mapsPageViewModel>();
             containerRegistry.RegisterForNavigation<BluetoothPage, BluetoothPageViewModel>();
-            //containerRegistry.RegisterForNavigation<mapsPage>("MainPage");
             containerRegistry.RegisterForNavigation<UpgradePage, UpgradePageViewModel>();
             containerRegistry.RegisterForNavigation<SetLocationPage, SetLocationPageViewModel>();
-            containerRegistry.RegisterForNavigation<testPage, testPageViewModel>();
 
             containerRegistry.Register<IGameRepository<Game>, fireBaseRepository>();
             containerRegistry.RegisterSingleton<GamesContext>();
