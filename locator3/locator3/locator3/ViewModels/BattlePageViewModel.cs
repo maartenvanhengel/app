@@ -421,7 +421,7 @@ namespace locator3.ViewModels
         }
         private void executeAttack3()
         {
-            /*      Button1Pressed--;
+                  Button1Pressed--;
                   Button2Pressed--;
                   Button3Pressed++;
                   Random rnd = new Random();
@@ -447,10 +447,7 @@ namespace locator3.ViewModels
                   checkPlayerHealth();
 
             //    playAnimation("fireGif.gif"); */
-            //  playAnimation("leaves");
-            
-            ComputerHealth = 0;
-            checkPlayerHealth();
+            //  playAnimation("leaves");            
         }
         private void checkPlayerHealth()
         {

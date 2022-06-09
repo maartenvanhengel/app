@@ -58,7 +58,7 @@
         </maps:Map>
 
         <!-- internetConnection  -->
-        <Label IsVisible="{Binding NoInternetVisuable}" Text="No internet connection" TextColor="red" Margin="0,-4,0,0" HorizontalOptions="Center" Grid.ColumnSpan="2"></Label>
+        <Label  Text="No internet connection" TextColor="red" Margin="0,-4,0,0" HorizontalOptions="Center" VerticalOptions="Start" FontSize="Large" BackgroundColor="Gray" Padding="5" Grid.Row="1" Grid.ColumnSpan="2" IsVisible="{Binding NoInternetVisuable}"></Label>
         <!--name -->
         <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="-2,-2,-2,-6" BackgroundColor="#04afaf" >
         <Label Text="{Binding PlayerName}" HorizontalOptions="Start" TextColor="Black" Margin="30,0,0,0"></Label>

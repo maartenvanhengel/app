@@ -113,16 +113,7 @@
             <Label Text="{Binding AttackDamageCost}" ></Label>
         </StackLayout>
         
-        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2">
-            <StackLayout Margin="0,0,20,0">
-                <Label Text="0" Style="{StaticResource labelStyle}" ></Label>
-                <Label Text="Games won" Style="{StaticResource labelStyleSub}"></Label>
-            </StackLayout>
-            <StackLayout Margin="20,0,0,0">
-                <Label Text="0" Style="{StaticResource labelStyle}"></Label>
-                <Label Text="Games Lost" Style="{StaticResource labelStyleSub}"></Label>
-            </StackLayout>
-        </StackLayout>
-        <Button Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="End" Text="go to arena" Command="{Binding enterArenaCommand} "></Button>
+        
+        <Button Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="End" Text="go back" Command="{Binding enterArenaCommand} "></Button>
     </Grid>
 </ContentPage>

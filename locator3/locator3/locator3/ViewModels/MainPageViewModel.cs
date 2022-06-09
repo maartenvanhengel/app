@@ -358,6 +358,7 @@ namespace locator3.ViewModels
         {
             questionMessage = "Add an game an give and play with friends. Add pointers where the where the player should go. Give them an assignment, an explanation or let them battle";
             JoinGameVisuable = false;
+            ExtraTextVisuable = false;
             ButtonJoinText = "Join Game";
             if (ButtonAddText == "Add game")
             {
@@ -382,7 +383,7 @@ namespace locator3.ViewModels
                 PublicVisuable = false;
                 EndGameVisuable = false;
                 PickerTypeSelectedIndex = -1;
-
+                ExtraTextVisuable = false;
             }
         }
         async void ExecuteJoinGame()
@@ -401,6 +402,7 @@ namespace locator3.ViewModels
                     }
                     else
                     {
+                        Name = "";
                         IndicatorVisible = true;
                         ButtonJoinText = "Join Game";
                         StackVisuable = false;
@@ -434,6 +436,7 @@ namespace locator3.ViewModels
             NextButtonVisuable = false;
             PublicVisuable = false;
             NextButtonVisuable = false;
+            NameVisuable = true;
 
             pickerTypeSelectedIndex = -1;
             if (ButtonJoinText == "Join Game")
@@ -544,6 +547,7 @@ namespace locator3.ViewModels
                     checkCoins();
                     EndGameVisuable = true;
                     PublicVisuable = true;
+                    ExtraTextVisuable = false;
                     questionMessage = "Select an andgame";
                 }
             }
@@ -593,7 +597,7 @@ namespace locator3.ViewModels
                 string idd = await GameRepository.AddItemAsync(newGame);
                 await pageDialogService.DisplayAlertAsync("ID", "Game add, you'r id is: " + idd, "Ok");
 
-              //  sendEmail(idd);
+                sendEmail(idd);
             }
         }
 

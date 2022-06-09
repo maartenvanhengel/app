@@ -19,12 +19,6 @@ namespace locator3.Views
             InitializeComponent();
 
             DisplayCurrentLocation();
-
-            Device.StartTimer(TimeSpan.FromSeconds(10), () =>
-            {
-
-                return true; // return true to repeat counting, false to stop timer
-            });
         }
         public async void DisplayCurrentLocation()
         {

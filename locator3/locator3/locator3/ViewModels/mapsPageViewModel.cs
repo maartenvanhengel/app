@@ -48,7 +48,7 @@ namespace locator3.ViewModels
             PopUpAnswer = "";
             PopUpText = "";
             PopUpTitle = "";
-            level = 1;
+            level = 5;
 
             Device.StartTimer(TimeSpan.FromSeconds(2), () =>
             {
@@ -251,7 +251,8 @@ namespace locator3.ViewModels
             var position = await locator.GetPositionAsync(System.TimeSpan.FromSeconds(1));
             foreach (Pointer pointer in pointers)
             {
-                if (position.Latitude <= pointer.Latitude +0.0004 && position.Latitude >= pointer.Latitude -0.004 && position.Longitude <= pointer.Longitude +0.0004 && position.Longitude >= pointer.Longitude -0.0004 && pointer.isEanabled ==true)
+                if (position.Latitude <= pointer.Latitude +0.0004 && position.Latitude >= pointer.Latitude -0.004 
+                    && position.Longitude <= pointer.Longitude +0.0004 && position.Longitude >= pointer.Longitude -0.0004 && pointer.isEanabled ==true)
                 {
                     timerEnabled = false;
                     if (pointer.type == "explanation")

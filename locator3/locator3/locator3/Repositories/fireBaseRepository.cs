@@ -73,7 +73,7 @@ namespace locator3.Repositories
             }
         }
 
-        public async Task<bool> UpdataItemAsync(Game game)
+        public async Task<bool> UpdateItemAsync(Game game)
         {
             try
             {
