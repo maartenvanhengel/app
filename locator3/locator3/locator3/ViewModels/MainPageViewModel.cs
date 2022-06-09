@@ -609,7 +609,7 @@ namespace locator3.ViewModels
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
                 mail.From = new MailAddress("maartenvanhengel2001@gmail.com");
-                mail.To.Add("maart1@outlook.be");
+                mail.To.Add(Email);
                 mail.Subject = "new locator game";
                 mail.Body = "Congrats \n" +
                     "You created a new game with id " + id + "\n" +

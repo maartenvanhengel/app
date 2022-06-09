@@ -127,9 +127,9 @@
             <Label IsVisible="{Binding AddGameVisuable}" Text="type:" Style="{StaticResource labelStyle}"></Label>
             <Picker Title="Select an option" IsVisible="{Binding AddGameVisuable}" SelectedIndex="{Binding PickerTypeSelectedIndex}" Style="{StaticResource pickerStyle}">
             <Picker.Items>
-                    <x:String>ga naar plaats</x:String>
-                    <x:String>uitleg bij plaats</x:String>
-                    <x:String>opdracht</x:String>
+                    <x:String>go to place</x:String>
+                    <x:String>explenation</x:String>
+                    <x:String>command</x:String>
                     <x:String>battle</x:String>
                     <x:String>Yes no question</x:String>
                 </Picker.Items>
